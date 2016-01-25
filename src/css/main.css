@@ -1,0 +1,90 @@
+/*
+ * Color Guide
+ * #08A1BF - Pundit Blue
+ * #6007B5 - Pundit Purple
+ * #333333
+ * #5B6C72 - Grayed blue. Top bar background
+ * #CCCCCC
+ * #E5E5EA
+ * #F7F7F7
+ */
+
+.two-x-background {
+  background-size: 100%!important;
+}
+
+.action-button {
+  width: 102px;
+  height: 30px;
+  background: #08A1BF;
+  border: none;
+  border-radius: 4px;
+  color: #FFFFFF;
+}
+
+/* Avatar */
+.avatar-small {
+  display: inline-block;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+/* Avatar Ends */
+
+/* Global Search */
+.global-search {
+  padding: 0 10px;
+  width: 280px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 15px;
+  color: #FFFFFF;
+}
+/* Global Search Ends */
+
+/* Page Header */
+.page-header {
+  width: 100%;
+  height: 75px;
+  background: #5B6C72;
+  text-align: center;
+}
+
+.page-header-content {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 745px;
+  height: 100%;
+}
+
+.page-header .logo {
+  float: left;
+  margin-top: 18px;
+  width: 138px;
+  height: 40px;
+  text-indent: -9999em;
+  background: url(/images/logo.png) no-repeat;
+}
+
+.page-header .global-search {
+  float: left;
+  margin: 25px 62px 0 76px;
+}
+
+.page-header .header-avatar {
+  float: right;
+  margin-left: 27px;
+  margin-top: 22px;
+}
+
+.page-header .action-button {
+  margin-top: 25px;
+}
+/* Page Header Ends */
+
+.page-body {
+  margin: 10px auto;
+  width: 630px;
+}

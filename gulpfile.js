@@ -19,7 +19,10 @@ var config = {
   paths: {
     html: './src/*.html',
     js: './src/js/**/*.js',
-    css: './src/css/**/*.css',
+    css: [
+      './src/css/reset.css',
+      './src/css/main.css'
+    ],
     images: './src/images/*',
     dist: './dist',
     mainJs: './src/js/main.js'
