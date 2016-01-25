@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "indent": [2, 2, {"SwitchCase": 1}], // 2 space indentation with enabled switch cases indentation
+    "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
+    "linebreak-style": [2, "unix"],
+    "no-duplicate-case": 2,
+    "no-undef": [2, { "typeof": true }],
+    "no-redeclare": 2,
+    "no-shadow-restricted-names": 2, // disallow shadowing of names such as arguments
+    "no-trailing-spaces": 2,
+    "no-unused-vars": 2,
+    "no-use-before-define": 2,
+    "quotes": [1, "single"],
+    "semi": [1, "always"],
+    "strict": [1, "global"]
+  },
+  "env": {
+    "browser": true,// browser global variables
+    "node": true,
+    "jquery": true
+  }
+}
