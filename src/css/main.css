@@ -9,11 +9,42 @@
  * #F7F7F7
  */
 
+* {
+  /*
+    some <input> elements override this property back to
+    content-box in reset.css to avoid old browsers' bugs.
+  */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+body {
+  line-height: 1;
+  font-family: 'SF UI Text', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+a:link, a:visited {
+  color: #08A1BF;
+}
+
+a:hover, a:active, a:focus {
+  /* TODO: confirm the hover color */
+  color: #08A1BF;
+}
+
 .two-x-background {
   background-size: 100%!important;
 }
 
-.action-button {
+/*~~ Buttons ~~*/
+.action-button-blue {
   width: 102px;
   height: 30px;
   background: #08A1BF;
@@ -22,7 +53,35 @@
   color: #FFFFFF;
 }
 
-/* Avatar */
+.action-button-white {
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 4px;
+  color: #CCCCCC;
+}
+
+.action-button-white-borderless {
+  background: none;
+  border: none;
+  color: #CCCCCC;
+}
+
+.action-button-purple {
+
+}
+
+.play-pause-button {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: #08A1BF;
+  border: none;
+  border-radius: 50%;
+  color: #FFFFFF;
+}
+/*~~ Buttons End ~~*/
+
+/*~~ Avatar ~~*/
 .avatar-small {
   display: inline-block;
   overflow: hidden;
@@ -30,9 +89,17 @@
   height: 40px;
   border-radius: 50%;
 }
-/* Avatar Ends */
 
-/* Global Search */
+.avatar-medium {
+  display: inline-block;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+/*~~ Avatar Ends ~~*/
+
+/*~~ Global Search ~~*/
 .global-search {
   padding: 0 10px;
   width: 280px;
@@ -42,9 +109,9 @@
   border-radius: 15px;
   color: #FFFFFF;
 }
-/* Global Search Ends */
+/*~~ Global Search Ends ~~*/
 
-/* Page Header */
+/*~~ Page Header ~~*/
 .page-header {
   width: 100%;
   height: 75px;
@@ -75,16 +142,168 @@
 
 .page-header .header-avatar {
   float: right;
-  margin-left: 27px;
   margin-top: 22px;
 }
 
-.page-header .action-button {
+.page-header .upload-button,
+.page-header .login-button {
+  float: left;
   margin-top: 25px;
 }
-/* Page Header Ends */
+/*~~ Page Header Ends ~~*/
 
+/*~~ Pundit ~~*/
 .page-body {
   margin: 10px auto;
   width: 630px;
 }
+
+.pundit-wrapper {
+  overflow: hidden;
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 4px;
+}
+
+.pundit-avatar {
+  float: left;
+  margin: -5px 15px 0 0;
+}
+
+.pundit-details {
+  float: left;
+  width: 513px;
+}
+
+.pundit-details .pundit-tag {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.pundit-details .pundit-tag a:link,
+.pundit-details .pundit-tag a:visited,
+.pundit-details .pundit-tag a:hover,
+.pundit-details .pundit-tag a:active,
+.pundit-details .pundit-tag a:focus {
+  /* TODO: confirm the color on hover */
+  color: #333;
+}
+
+.pundit-details .pundit-subject {
+  margin: 5px 0 20px 0;
+  font-size: 1.42em;
+}
+
+.pundit-details .pundit-audio {
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.pundit-details .pundit-audio .play-pause-button {
+  float: left;
+  margin-right: 10px;
+}
+
+.pundit-details .pundit-audio .audio-wave {
+  float: left;
+  width: 400px;
+  height: 40px;
+  /* TODO just a placeholder here for now */
+  background: url(/images/wave-placeholder.png) no-repeat;
+}
+
+.pundit-details .pundit-preview {
+  overflow: hidden;
+  margin: 20px 0;
+  height: 150px;
+  border-radius: 4px;
+}
+
+.pundit-details .pundit-preview-image {
+  float: left;
+  width: 150px;
+  height: 150px;
+}
+
+.pundit-details .pundit-preview-description {
+  float: left;
+  padding-left: 20px;
+  width: 362px;
+  height: 150px;
+  border: 1px solid #E5E5EA;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.pundit-details .pundit-actions {
+  margin: 20px 0 10px;
+  line-height: 30px;
+}
+
+.pundit-details .pundit-share-button,
+.pundit-details .pundit-like-button {
+  margin-right: 10px;
+  width: 78px;
+  height: 30px;
+}
+
+.pundit-details .pundit-share-button:hover,
+.pundit-details .pundit-like-button:hover {
+  background: #6007B5;
+  border-color: #6007B5;
+  color: #FFFFFF;
+}
+
+.pundit-details .pundit-mark-button {
+  float: right;
+  margin-right: 16px;
+  height: 30px;
+}
+
+.pundit-details .pundit-note-description {
+  float: right;
+  color: #CCCCCC;
+}
+
+.pundit-details .pundit-comments {
+  margin: 10px 0 20px;
+  border-top: 1px solid #E5E5EA;
+}
+
+.pundit-details .pundit-comment {
+  position: relative;
+  margin: 30px 0;
+}
+
+.pundit-details .play-pause-button {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.pundit-details .comment-avatar-wrapper {
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+
+.comment-details {
+  float: left;
+}
+
+.pundit-details .comment-avatar-wrapper:hover .play-pause-button {
+  display: block;
+}
+
+.pundit-details .pundit-comment .audio-wave {
+  float: left;
+  width: 400px;
+  height: 20px;
+  /* TODO just a placeholder here for now */
+  background: url(/images/wave-placeholder.png) no-repeat;
+  background-size: 50%;
+}
+
+/*~~ Pundit Ends ~~*/
