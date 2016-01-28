@@ -21,6 +21,7 @@ var config = {
     js: './src/js/**/*.js',
     css: [
       './src/css/reset.css',
+      './src/css/vcenter.css',
       './src/css/main.css'
     ],
     images: './src/images/*',
