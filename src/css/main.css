@@ -367,3 +367,60 @@ a:hover, a:active, a:focus {
 }
 
 /*~~ Pundit Ends ~~*/
+
+/*~~ Login Overlay ~~*/
+.login-form {
+  position: relative;
+  margin: 0 auto;
+  width: 630px;
+  height: 420px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px #979797;
+  text-align: center;
+}
+
+.login-form .login-user-info {
+  height: 310px;
+}
+
+.login-form .login-title {
+  margin: 35px 0 10px;
+  color: #08A1BF;
+  font-size: 2.15em;
+  font-weight: bold;
+}
+
+.login-form .login-subtitle {
+  margin: 10px 0 35px;
+  font-size: 1.1em;
+}
+
+.login-form .login-register-info {
+  height: 110px;
+  background: #F7F7F7;
+}
+
+.login-form .login-username,
+.login-form .login-password {
+  margin-bottom: 30px;
+  width: 250px;
+  border: none;
+  border-bottom: 1px solid #E6E6E6;
+  color: #5B6C72;
+  font-size: 1.2em;
+}
+
+.login-form .login-button {
+  margin-top: 5px;
+  width: 80px;
+  height: 40px;
+}
+
+.login-form .close-login-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+/*~~ Login Overlay Ends ~~*/

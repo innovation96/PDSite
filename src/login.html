@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name ="viewport" content ="initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="css/bundle.css">
+</head>
+<body style="background: #7b7b7b;">
+<div class="login-form">
+  <div class="login-user-info">
+    <h2 class="login-title">PUNDIT</h2>
+    <h3 class="login-subtitle">Talk about your latest obsessions.</h3>
+    <form action="/" id="loginForm">
+      <input type="text" class="login-username" name="username" placeholder="Username"><br>
+      <input type="password" class="login-password" name="password" placeholder="Password"><br>
+      <button type="submit" class="action-button-blue login-button">Log In</button>
+    </form>
+  </div>
+  <div class="login-register-info">
+    <p>New to <strong>PUNDIT</strong>? Get the app to create an account!</p>
+    <form action="/" id="registerForm">
+      <select name="country" id="countrySelect" class="country-select">
+        <option name="us">US</option>
+      </select>
+      <input type="text" class="country-code" value="+1">
+      <input type="tel" class="phone-number">
+      <button type="submit">Get the App</button>
+    </form>
+  </div>
+  <button class="close-login-button">Close</button>
+</div>
+<script src="js/bundle.js"></script>
+</body>
+</html>
