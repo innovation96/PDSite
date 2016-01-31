@@ -30,6 +30,7 @@
 
 body {
   line-height: 1;
+  background: #F7F7F7;
   font-family: 'SF UI Text', Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
@@ -379,6 +380,88 @@ a:hover, a:active, a:focus {
 
 /*~~ Pundit Ends ~~*/
 
+/*~~ Channel ~~*/
+.channel-wrapper {
+  position: relative;
+  padding: 60px 20px 10px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.channel-wrapper .join-channel-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 134px;
+  height: 28px;
+  font-size: 0.86em;
+}
+
+.channel-wrapper .title {
+  height: 80px;
+  font-weight: bold;
+}
+
+.channel-wrapper .hash-sign {
+  position: relative;
+  top: -15px;
+  margin-right: 5px;
+  color: rgba(8, 161, 191, 0.3);
+  font-size: 3.7em;
+}
+
+.channel-wrapper .channel-title {
+  position: relative;
+  top: -40px;
+  font-size: 48px;
+}
+
+.channel-wrapper .channel-detail {
+  color: #5B6C72;
+}
+
+.channel-wrapper .channel-members-list {
+  overflow: hidden;
+  position: relative;
+  left: -1px;
+  margin-top: 30px;
+  width: 590px;
+}
+
+.channel-wrapper .channel-member {
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.channel-wrapper .channel-member:nth-child(12n+1) {
+  margin-left: 0;
+}
+
+.pundits-filter {
+  height: 55px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #E5E5EA;
+}
+
+.pundits-filter .pundit-filter {
+  width: 50%;
+  height: 100%;
+  background: none;
+  border: none;
+  border-bottom: 4px solid transparent;
+  font-size: 15px;
+}
+
+.pundits-filter .pundit-filter.selected {
+  border-bottom-color: #08A1BF;
+  color: #08A1BF;
+  font-weight: bold;
+}
+/*~~ Channel Ends ~~*/
+
 /*~~ Login Overlay ~~*/
 .login-form {
   overflow: hidden;
@@ -481,7 +564,7 @@ a:hover, a:active, a:focus {
 }
 
 .register-info .phone-number {
-  margin: 0 25px;
+  margin: 0 20px;
   width: 175px;
 }
 
