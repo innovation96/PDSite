@@ -162,6 +162,10 @@ a:hover, a:active, a:focus {
   float: left;
   margin-top: 25px;
 }
+
+.page-header .login-button {
+  margin-left: 9px;
+}
 /*~~ Page Header Ends ~~*/
 
 /*~~ Pundit ~~*/
@@ -540,6 +544,15 @@ a:hover, a:active, a:focus {
 /*~~ Login Overlay Ends ~~*/
 
 /*~~ Register to get app form ~~*/
+/* Only use wrapper when the form is not nested in login overlay */
+.register-wrapper {
+  height: 110px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 4px;
+  text-align: center;
+}
+
 .register-info {
   padding-top: 25px;
 }
@@ -576,8 +589,8 @@ a:hover, a:active, a:focus {
 
 .register-info .get-app-button {
   position: relative;
-  top: -5px;
+  top: -6px;
   width: 100px;
-  height: 28px;
+  height: 30px;
 }
 /*~~ Register to get app form ends ~~*/
