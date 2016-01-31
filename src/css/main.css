@@ -53,6 +53,13 @@ a:hover, a:active, a:focus {
   color: #FFFFFF;
 }
 
+.action-button-hollow-blue {
+  background: transparent;
+  border: 1px solid #08A1BF;
+  border-radius: 4px;
+  color: #08A1BF;
+}
+
 .action-button-white {
   background: #FFFFFF;
   border: 1px solid #E5E5EA;
@@ -370,11 +377,13 @@ a:hover, a:active, a:focus {
 
 /*~~ Login Overlay ~~*/
 .login-form {
+  overflow: hidden;
   position: relative;
   margin: 0 auto;
   width: 630px;
   height: 420px;
-  background: #FFFFFF;
+  background: #FFFFFF url(/images/happy_face.jpg) no-repeat 24px 230px;
+  background-size: 100px 69px;
   border: 1px solid #E5E5EA;
   border-radius: 4px;
   box-shadow: 0 0 0 1px #979797;
@@ -382,6 +391,7 @@ a:hover, a:active, a:focus {
 }
 
 .login-form .login-user-info {
+  overflow: hidden;
   height: 310px;
 }
 
@@ -397,11 +407,6 @@ a:hover, a:active, a:focus {
   font-size: 1.1em;
 }
 
-.login-form .login-register-info {
-  height: 110px;
-  background: #F7F7F7;
-}
-
 .login-form .login-username,
 .login-form .login-password {
   margin-bottom: 30px;
@@ -412,10 +417,21 @@ a:hover, a:active, a:focus {
   font-size: 1.2em;
 }
 
+.login-form .login-username:focus,
+.login-form .login-password:focus {
+  outline: none;
+  border-bottom-color: #08A1BF;
+}
+
 .login-form .login-button {
   margin-top: 5px;
   width: 80px;
   height: 40px;
+}
+
+.login-form .register-info {
+  height: 110px;
+  background: #F7F7F7;
 }
 
 .login-form .close-login-button {
@@ -424,3 +440,46 @@ a:hover, a:active, a:focus {
   left: 10px;
 }
 /*~~ Login Overlay Ends ~~*/
+
+/*~~ Register to get app form ~~*/
+.register-info {
+  padding-top: 25px;
+}
+
+.register-info .register-form {
+  margin-top: 25px;
+}
+
+.register-info .country-code,
+.register-info .phone-number {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #E6E6E6;
+  color: #5B6C72;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.register-info .country-code {
+  margin-left: 20px;
+  width: 70px;
+}
+
+.register-info .phone-number {
+  margin: 0 25px;
+  width: 175px;
+}
+
+.register-info .country-code:focus,
+.register-info .phone-number:focus {
+  outline: none;
+  border-bottom-color: #08A1BF;
+}
+
+.register-info .get-app-button {
+  position: relative;
+  top: -5px;
+  width: 100px;
+  height: 28px;
+}
+/*~~ Register to get app form ends ~~*/
