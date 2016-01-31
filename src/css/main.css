@@ -18,6 +18,10 @@
   box-sizing: border-box;
 }
 
+.hidden {
+  display: none;
+}
+
 .clearfix:after {
   content: "";
   display: table;
@@ -427,6 +431,17 @@ a:hover, a:active, a:focus {
   margin-top: 5px;
   width: 80px;
   height: 40px;
+}
+
+.login-form .login-error-message {
+  margin-top: 5px;
+  height: 25px;
+  line-height: 25px;
+  background: url(/images/sad_face.jpg) no-repeat 188px top;
+  background-size: 25px 25px;
+  color: #5B6C72;
+  font-size: 0.95em;
+  text-indent: 30px;
 }
 
 .login-form .register-info {
