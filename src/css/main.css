@@ -9,6 +9,15 @@
  * #F7F7F7
  */
 
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1454331109_955913.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1454331109_955913.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1454331109_955913.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1454331109_955913.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1454331109_955913.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
 * {
   /*
     some <input> elements override this property back to
@@ -99,6 +108,14 @@ a:hover, a:active, a:focus {
   overflow: hidden;
   width: 25px;
   height: 25px;
+  border-radius: 50%;
+}
+
+.avatar-small-tiny {
+  display: inline-block;
+  overflow: hidden;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
 }
 
@@ -267,6 +284,101 @@ a:hover, a:active, a:focus {
   margin-left: 9px;
 }
 /*~~ Page Header Ends ~~*/
+
+/*~~ Global Player ~~*/
+.fixed-player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55px;
+  background: #492fb4; /* Old browsers */
+  background: -moz-linear-gradient(top, #492fb4 0%, #814ac4 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #492fb4 0%,#814ac4 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #492fb4 0%,#814ac4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.fixed-player .player-wrapper {
+  margin: auto;
+  width: 910px;
+  height: 100%;
+}
+
+.fixed-player .player-component {
+  float: left;
+  height: 100%;
+}
+
+.fixed-player .player-control {
+  width: 120px;
+}
+
+/*
+  TODO: The iconfont needs to be updated, the characters
+  I choose for now doesn't have baseline aligned.
+*/
+.fixed-player .player-button {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-family: "iconfont";
+  font-size: 24px;
+}
+
+.fixed-player .player-progress {
+  margin: 0 0 0 28px;
+  padding: 23px;
+  width: 575px;
+  font-weight: lighter;
+}
+
+.fixed-player .elapsed-time {
+  float: left;
+  margin-right: 10px;
+}
+
+.fixed-player .remaining-time {
+  float: right;
+  margin: 0 20px 0 10px;
+}
+
+.fixed-player .progress-bar-wrapper {
+  overflow: hidden;
+  margin-top: 7px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.fixed-player .progress-bar {
+  height: 2px;
+  background: #FFFFFF;
+}
+
+.fixed-player .track-info {
+  width: 187px;
+  white-space: nowrap;
+}
+
+.fixed-player .avatar-small-tiny {
+  position: relative;
+  top: 10px;
+}
+
+.fixed-player .username:link,
+.fixed-player .username:visited,
+.fixed-player .username:hover,
+.fixed-player .username:active,
+.fixed-player .tag:link,
+.fixed-player .tag:visited,
+.fixed-player .tag:hover,
+.fixed-player .tag:active {
+  color: #FFFFFF;
+  font-weight: lighter;
+}
+/*~~ Global Player Ends ~~*/
 
 /*~~ Pundit ~~*/
 .page-body {
