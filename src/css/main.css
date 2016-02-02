@@ -134,6 +134,14 @@ a:hover, a:active, a:focus {
   height: 60px;
   border-radius: 50%;
 }
+
+.avatar-big {
+  display: inline-block;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
 /*~~ Avatar Ends ~~*/
 
 /*~~ Global Search ~~*/
@@ -677,6 +685,66 @@ a:hover, a:active, a:focus {
   font-weight: bold;
 }
 /*~~ Channel Ends ~~*/
+
+/*~~ User Profile ~~*/
+.profile-wrapper {
+  position: relative;
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.profile-wrapper .username {
+  height: 20px;
+  font-size: 20px;
+}
+
+.profile-wrapper .fullname {
+  margin: 10px auto 20px;
+  height: 15px;
+  font-size: 14px;
+}
+
+.user-profile-avatar {
+  overflow: hidden;
+  margin: 20px auto;
+  padding-top: 5px;
+  width: 110px;
+  height: 110px;
+  background: #874ec6; /* Old browsers */
+  background: -moz-linear-gradient(top, #874ec6 0%, #3023ad 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #874ec6 0%,#3023ad 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #874ec6 0%,#3023ad 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  border-radius: 50%;
+}
+
+.profile-wrapper .section {
+  display: inline-block;
+  margin: 0 32px;
+  height: 44px;
+}
+
+.profile-wrapper .number {
+  color: #333;
+  font-size: 20px;
+}
+
+.profile-wrapper .description {
+  line-height: 2;
+  color: #999999;
+  font-size: 13px;
+}
+
+.profile-wrapper .follow-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 90px;
+  height: 30px;
+}
+/*~~ User Profile Ends ~~*/
 
 /*~~ Login Overlay ~~*/
 .login-form {
