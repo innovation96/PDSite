@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Post Pundit</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name ="viewport" content ="initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="stylesheet" href="css/bundle.css">
+</head>
+<body style="background: #7b7b7b;">
+<div class="centered-overlay edit-pundit-overlay">
+  <form action="/" id="editPunditForm" class="edit-pundit-form">
+    <h2 class="title">Keep it short and sweet!</h2>
+    <h3 class="subtitle">Drag the markers to trim your audio to 1 minute or less.</h3>
+    <div class="audio-section">
+      <div class="control-button">
+        <button class="play-pause-button">Play</button>
+      </div>
+      <div class="audio-adjust">
+        <div class="audio-wave"></div>
+        <div class="audio-selected"></div>
+        <div class="audio-adjust-slider audio-start">
+          <span class="time">00:00</span>
+          <span class="label">START</span>
+          <button class="slider"></button>
+        </div>
+        <div class="audio-adjust-slider audio-end">
+          <span class="time">00:59</span>
+          <span class="label">END</span>
+          <button class="slider"></button>
+        </div>
+      </div>
+    </div>
+    <div class="pundit-detail">
+      <input type="text" class="pundit-caption" placeholder="Add a Caption">
+      <input type="text" class="pundit-channel" placeholder="tag a #channel">
+      <!-- TODO: Channel drop down list here -->
+    </div>
+    <button type="submit" class="action-button-blue submit-button">Post</button>
+    <button class="action-button-gray cancel-button">Cancel</button>
+  </form>
+</div>
+<script src="js/bundle.js"></script>
+</body>
+</html>

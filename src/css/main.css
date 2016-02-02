@@ -37,6 +37,20 @@
   clear: both;
 }
 
+.centered-overlay {
+  overflow: hidden;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 4px;
+}
+
 body {
   line-height: 1;
   background: #F7F7F7;
@@ -79,6 +93,13 @@ a:hover, a:active, a:focus {
   border: 1px solid #E5E5EA;
   border-radius: 4px;
   color: #CCCCCC;
+}
+
+.action-button-gray {
+  background: #CCCCCC;
+  border: none;
+  border-radius: 4px;
+  color: #FFFFFF;
 }
 
 .action-button-white-borderless {
@@ -745,6 +766,189 @@ a:hover, a:active, a:focus {
   height: 30px;
 }
 /*~~ User Profile Ends ~~*/
+
+/*~~ Upload Overlay ~~*/
+.upload-form {
+  width: 630px;
+  height: 418px;
+  text-align: center;
+}
+
+.upload-drop-area {
+  width: 100%;
+  height: 320px;
+  border: 4px dashed #CCCCCC;
+  border-radius: 3px;
+}
+
+.upload-form .title {
+  margin: 45px auto 10px;
+  color: #08A1BF;
+  font-size: 25px;
+}
+
+.upload-form .subtitle {
+  margin-bottom: 130px;
+  color: #CCCCCC;
+  font-size: 13px;
+}
+
+.upload-form .file-button {
+  width: 140px;
+  height: 40px;
+}
+
+.upload-form .description {
+  margin-top: 30px;
+  color: #08A1BF;
+  font-size: 13px;
+}
+/*~~ Upload Overlay Ends ~~*/
+
+/*~~ Post Pundit Overlay ~~*/
+.edit-pundit-overlay {
+  width: 630px;
+  height: 418px;
+  text-align: center;
+}
+
+.edit-pundit-form .title {
+  margin: 10px auto;
+  color: #08A1BF;
+  font-size: 25px;
+}
+
+.edit-pundit-form .subtitle {
+  color: #CCCCCC;
+  font-size: 13px;
+}
+
+.edit-pundit-form .audio-section {
+  margin-top: 20px;
+  height: 160px;
+  border-bottom: 1px solid #E5E5EA;
+}
+
+.edit-pundit-form .control-button {
+  float: left;
+  margin-top: 50px;
+  margin-right: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+.edit-pundit-form .audio-adjust {
+  float: left;
+  position: relative;
+  width: 540px;
+  height: 140px;
+}
+
+.edit-pundit-form .audio-wave {
+  margin-top: 50px;
+  width: 100%;
+  height: 40px;
+  background: #F7F7F7;
+}
+
+.edit-pundit-form .audio-selected {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  width: 340px;
+  height: 70px;
+  background: rgba(8, 161, 191, 0.1);
+  border-left: 2px solid #3023AE;
+  border-right: 2px solid #3023AE;
+}
+
+.edit-pundit-form .audio-adjust-slider {
+  position: absolute;
+  top: 0;
+  height: 140px;
+  color: #CCCCCC;
+  font-size: 13px;
+}
+
+.edit-pundit-form .audio-adjust-slider .time {
+  position: absolute;
+  top: 13px;
+  left: -19px;
+}
+
+.edit-pundit-form .audio-start .label {
+  position: absolute;
+  left: -28px;
+  bottom: -5px;
+}
+
+.edit-pundit-form .audio-end .label {
+  position: absolute;
+  left: -4px;
+  bottom: -5px;
+}
+
+.edit-pundit-form .audio-start .slider {
+  position: absolute;
+  left: -21px;
+  bottom: 15px;
+  width: 23px;
+  height: 18px;
+  background: #3023AE;
+  border: none;
+  border-radius: 9px 0 9px 9px;
+}
+
+.edit-pundit-form .audio-end .slider {
+  position: absolute;
+  left: -2px;
+  bottom: 15px;
+  width: 23px;
+  height: 18px;
+  background: #3023AE;
+  border: none;
+  border-radius: 0 9px 9px 9px;
+}
+
+/*~~TODO: delete these initial state styles below~~*/
+.edit-pundit-form .audio-end {
+  left: 340px;
+}
+/*~~TODO: delete these initial state styles above~~*/
+
+.edit-pundit-form .pundit-caption,
+.edit-pundit-form .pundit-channel {
+  width: 100%;
+  border: none;
+  font-weight: lighter;
+}
+
+.edit-pundit-form .pundit-caption {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.edit-pundit-form .pundit-channel {
+  margin-top: 15px;
+  font-size: 17px;
+}
+
+.edit-pundit-form .submit-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 70px;
+  height: 40px;
+}
+
+.edit-pundit-form .cancel-button {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 84px;
+  height: 40px;
+}
+/*~~ Post Pundit Overlay Ends ~~*/
 
 /*~~ Login Overlay ~~*/
 .login-form {
