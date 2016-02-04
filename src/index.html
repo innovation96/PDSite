@@ -12,8 +12,11 @@
 <body>
 <header class="page-header">
   <div class="page-header-content">
-    <a href="/"><h1 class="logo two-x-background">Pundit</h1></a>
-    <input type="search" id="globalSearch" class="global-search" placeholder="search">
+    <a href="/"><h1 class="logo two-x-bg-icons">Pundit</h1></a>
+    <form action="#" class="global-search-form">
+      <input type="search" id="globalSearch" class="global-search" placeholder="search">
+      <button class="global-search-button">Search</button>
+    </form>
     <button class="upload-button action-button-blue">+ Upload</button>
     <a class="header-avatar avatar-small" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40"></a>
   </div>
@@ -45,11 +48,11 @@
       <div class="pundit-actions">
         <button class="action-button-white pundit-share-button">Share</button><button class="action-button-white pundit-like-button">Like</button>
         <span class="pundit-note-description">6 Notes</span>
-        <button class="action-button-white-borderless pundit-mark-button">...</button>
+        <button class="action-button-white-borderless pundit-mark-button">ᐧᐧᐧ</button>
       </div>
       <div class="pundit-comments">
         <ul class="pundit-comments-list-wrapper">
-          <li class="pundit-comment">
+          <li class="pundit-comment clearfix">
             <div class="comment-avatar-wrapper">
               <a href="#" class="avatar-small"><img src="/images/yeh_avatar.jpg" alt="user avatar" width="40" height="40"></a>
               <a href="#" class="play-pause-button play-button">Play</a>
@@ -59,12 +62,13 @@
               <div class="audio-wave"></div>
             </div>
             <div class="comment-actions">
-              <button class="action-button-white-borderless pundit-mark-button">...</button>
+              <button class="action-button-white-borderless pundit-mark-button">ᐧᐧᐧ</button>
+              <button class="pundit-mark-inappropriate-button hidden">Flag as inappropriate</button>
               <span class="comment-like-count">6</span>
               <button class="comment-like-button">Like</button>
             </div>
           </li>
-          <li class="pundit-comment">
+          <li class="pundit-comment clearfix">
             <div class="comment-avatar-wrapper">
               <a href="#" class="avatar-small"><img src="/images/jwt_avatar.jpg" alt="user avatar" width="40" height="40"></a>
               <a href="#" class="play-pause-button play-button">Play</a>
@@ -74,7 +78,8 @@
               <div class="audio-wave"></div>
             </div>
             <div class="comment-actions">
-              <button class="action-button-white-borderless pundit-mark-button">...</button>
+              <button class="action-button-white-borderless pundit-mark-button">ᐧᐧᐧ</button>
+              <button class="pundit-mark-inappropriate-button hidden">Flag as inappropriate</button>
               <span class="comment-like-count">6</span>
               <button class="comment-like-button">Like</button>
             </div>
@@ -88,9 +93,9 @@
 <div class="fixed-player clearfix">
   <div class="player-wrapper">
     <div class="player-component player-control">
-      <button class="player-button prev-button">&#xe607;</button>
-      <button class="player-button play-pause-button">&#xe605;</button>
-      <button class="player-button next-button">&#xe600;</button>
+      <button class="player-button prev-button">Prev</button>
+      <button class="player-button play-pause-button pause-button">Pause</button>
+      <button class="player-button next-button">Next</button>
     </div>
     <div class="player-component player-progress">
       <span class="elapsed-time">0:10</span>
@@ -98,7 +103,6 @@
       <div class="progress-bar-wrapper">
         <div class="progress-bar" style="width:30%;"></div>
       </div>
-
     </div>
     <div class="player-component track-info">
       <a href="#" class="avatar-small-tiny">

@@ -7,16 +7,8 @@
  * #CCCCCC
  * #E5E5EA
  * #F7F7F7
+ * #D0021B - Red. Inappropriate/Errpr.
  */
-
-@font-face {
-  font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1454331109_955913.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/font_1454331109_955913.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1454331109_955913.woff') format('woff'), /* chrome、firefox */
-  url('//at.alicdn.com/t/font_1454331109_955913.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('//at.alicdn.com/t/font_1454331109_955913.svg#iconfont') format('svg'); /* iOS 4.1- */
-}
 
 * {
   /*
@@ -67,8 +59,8 @@ a:hover, a:active, a:focus {
   color: #08A1BF;
 }
 
-.two-x-background {
-  background-size: 100%!important;
+.two-x-bg-icons {
+  background-size: 300px 160px!important;
 }
 
 /*~~ Buttons ~~*/
@@ -167,8 +159,8 @@ a:hover, a:active, a:focus {
 
 /*~~ Global Search ~~*/
 .global-search {
-  padding: 0 10px;
-  width: 280px;
+  padding: 0 10px 0 30px;
+  width: 260px;
   height: 30px;
   background: rgba(255, 255, 255, 0.2);
   border: none;
@@ -290,12 +282,35 @@ a:hover, a:active, a:focus {
   width: 138px;
   height: 40px;
   text-indent: -9999em;
-  background: url(/images/logo.png) no-repeat;
+  background: url(/images/icons.png) no-repeat;
 }
 
-.page-header .global-search {
+.page-header .global-search-form {
+  position: relative;
   float: left;
   margin: 25px 62px 0 76px;
+}
+
+.page-header .global-search-button {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  font-size: 0;
+}
+
+.page-header .global-search-button:after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: url(/images/icons.png) no-repeat -110px -25px;
+  background-size: 150px 80px;
 }
 
 .page-header .header-avatar {
@@ -344,17 +359,50 @@ a:hover, a:active, a:focus {
   width: 120px;
 }
 
-/*
-  TODO: The iconfont needs to be updated, the characters
-  I choose for now doesn't have baseline aligned.
-*/
 .fixed-player .player-button {
-  margin-top: 10px;
+  float: left;
+  margin-top: 20px;
   background: none;
   border: none;
   color: #FFFFFF;
-  font-family: "iconfont";
-  font-size: 24px;
+  font-size: 0;
+  text-align: center;
+}
+
+.fixed-player .play-pause-button {
+  margin: 15px 8px 0;
+  width: 40px;
+  height: 27px;
+}
+.fixed-player .player-button:before {
+  content: "";
+  display: inline-block;
+  background: url(/images/icons.png) no-repeat;
+  background-size: 150px 80px;
+}
+
+.fixed-player .prev-button:before {
+  width: 20px;
+  height: 16px;
+  background-position: -55px -25px;
+}
+
+.fixed-player .next-button:before {
+  width: 20px;
+  height: 16px;
+  background-position: -77px -25px;
+}
+
+.fixed-player .play-button:before {
+  width: 28px;
+  height: 27px;
+  background-position: 0 -25px;
+}
+
+.fixed-player .pause-button:before {
+  width: 16px;
+  height: 27px;
+  background-position: -30px -25px;
 }
 
 .fixed-player .player-progress {
@@ -412,6 +460,7 @@ a:hover, a:active, a:focus {
 /*~~ Pundit ~~*/
 .page-body {
   margin: 10px auto;
+  padding-bottom: 50px;
   width: 630px;
 }
 
@@ -432,6 +481,28 @@ a:hover, a:active, a:focus {
 .pundit-details {
   float: left;
   width: 513px;
+}
+
+.pundit-details .play-pause-button:after {
+  content: "";
+  left: 15px;
+  position: absolute;
+  background: url(/images/icons.png) no-repeat;
+  background-size: 150px 80px;
+}
+
+.pundit-details .pause-button:after {
+  top: 12px;
+  width: 13px;
+  height: 16px;
+  background-position: -110px -41px;
+}
+
+.pundit-details .play-button:after {
+  top: 13px;
+  width: 13px;
+  height: 14px;
+  background-position: -90px -43px;
 }
 
 .pundit-details .pundit-tag {
@@ -464,8 +535,10 @@ a:hover, a:active, a:focus {
 }
 
 .pundit-details .pundit-audio .play-pause-button {
+  position: relative;
   float: left;
   margin-right: 10px;
+  font-size: 0;
 }
 
 .pundit-details .pundit-audio .audio-wave {
@@ -525,6 +598,7 @@ a:hover, a:active, a:focus {
   margin-right: 10px;
   width: 78px;
   height: 30px;
+  font-size: 12px;
 }
 
 .pundit-details .pundit-actions .pundit-share-button:hover,
@@ -534,10 +608,45 @@ a:hover, a:active, a:focus {
   color: #FFFFFF;
 }
 
+.pundit-details .pundit-actions .pundit-share-button:before,
+.pundit-details .pundit-actions .pundit-like-button:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  background: url(/images/icons.png) no-repeat;
+}
+
+.pundit-details .pundit-actions .pundit-share-button:before {
+  margin-right: 10px;
+  width: 10px;
+  height: 10px;
+  background-position: -77px 0px;
+  background-size: 150px 80px;
+}
+
+.pundit-details .pundit-actions .pundit-share-button:hover:before {
+  background-position: -87px 0px;
+}
+
+.pundit-details .pundit-actions .pundit-like-button:before {
+  margin-right: 7px;
+  width: 12px;
+  height: 10px;
+  background-position: -29px -31px;
+  background-size: 80px 43px;
+}
+
+.pundit-details .pundit-actions .pundit-like-button:hover:before {
+  background-position: 0px -31px;
+}
+
 .pundit-details .pundit-actions .pundit-mark-button {
   float: right;
   margin-right: 16px;
   height: 30px;
+  line-height: 1;
+  font-size: 28px;
 }
 
 .pundit-details .pundit-note-description {
@@ -551,7 +660,6 @@ a:hover, a:active, a:focus {
 }
 
 .pundit-details .pundit-comment {
-  overflow: hidden;
   position: relative;
   padding: 15px 0;
 }
@@ -564,7 +672,12 @@ a:hover, a:active, a:focus {
   display: none;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 15px;
+  font-size: 0;
+}
+
+.pundit-details .pundit-comment:hover .play-pause-button {
+  display: block;
 }
 
 .pundit-details .comment-avatar-wrapper {
@@ -576,10 +689,6 @@ a:hover, a:active, a:focus {
 
 .comment-details {
   float: left;
-}
-
-.pundit-details .comment-avatar-wrapper:hover .play-pause-button {
-  display: block;
 }
 
 .pundit-details .pundit-comment .audio-wave {
@@ -599,14 +708,68 @@ a:hover, a:active, a:focus {
 }
 
 .pundit-comments .comment-actions {
+  display: none;
   position: absolute;
   right: 0;
   top: 28px;
   color: #CCCCCC;
 }
 
+.pundit-details .pundit-comment:hover .comment-actions {
+  display: block;
+}
+
 .pundit-comments .comment-actions .pundit-mark-button {
   margin-right: 10px;
+  line-height: 1;
+  font-size: 28px;
+}
+
+.pundit-comments .pundit-mark-inappropriate-button {
+  cursor: pointer;
+  position: absolute;
+  left: -175px;
+  top: 20px;
+  width: 200px;
+  height: 50px;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 3px 1px;
+  color: #D0021B;
+  font-size: 12px;
+  text-indent: 20px;
+}
+
+.pundit-comments .pundit-mark-inappropriate-button:before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 10px;
+  width: 14px;
+  height: 25px;
+  background: url(/images/icons.png) no-repeat -130px -25px;
+  background-size: 150px 80px;
+}
+
+.pundit-comments .comment-actions .comment-like-count {
+  position: relative;
+  top: -5px;
+}
+
+.pundit-comments .comment-actions .comment-like-button {
+  background: none;
+  border: none;
+  font-size: 0;
+}
+
+.pundit-comments .comment-actions .comment-like-button:before {
+  content: "";
+  display: inline-block;
+  width: 23px;
+  height: 20px;
+  background: url(/images/icons.png) no-repeat -55px -57px;
+  background-size: 150px 80px;
 }
 
 .pundit-comments .pundit-comments-more {
@@ -615,12 +778,13 @@ a:hover, a:active, a:focus {
 }
 
 .pundit-comments .pundit-comments-more:after {
-  /* TODO: replace the placeholder content */
-  content: "⌄";
+  content: "";
+  display: inline-block;
   margin-left: 10px;
-  color: #CCCCCC;
-  font-size: 1.4em;
-  text-indent: 15px;
+  width: 12px;
+  height: 8px;
+  background: url(/images/icons.png) no-repeat -78px -12px;
+  background-size: 150px 80px;
 }
 
 /*~~ Pundit Ends ~~*/
