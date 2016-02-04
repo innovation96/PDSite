@@ -928,7 +928,21 @@ a:hover, a:active, a:focus {
   right: 20px;
   width: 90px;
   height: 30px;
+  font-size: 12px;
 }
+
+.profile-wrapper .follow-button:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  left: -6px;
+  width: 20px;
+  height: 14px;
+  background: url(/images/icons.png) no-repeat -110px 0;
+  background-size: 150px 80px;
+}
+
 /*~~ User Profile Ends ~~*/
 
 /*~~ Upload Overlay ~~*/
@@ -1121,12 +1135,22 @@ a:hover, a:active, a:focus {
   margin: 0 auto;
   width: 630px;
   height: 420px;
-  background: #FFFFFF url(/images/happy_face.jpg) no-repeat 24px 230px;
-  background-size: 100px 69px;
+  background-color: #FFFFFF;
   border: 1px solid #E5E5EA;
   border-radius: 4px;
   box-shadow: 0 0 0 1px #979797;
   text-align: center;
+}
+
+.login-form:before {
+  content: "";
+  position: absolute;
+  top: 230px;
+  left: 24px;
+  width: 100px;
+  height: 69px;
+  background: url(/images/icons_big.jpg) no-repeat;
+  background-size: 100px 298px;
 }
 
 .login-form .login-user-info {
@@ -1169,14 +1193,24 @@ a:hover, a:active, a:focus {
 }
 
 .login-form .login-error-message {
+  position: relative;
   margin-top: 5px;
   height: 25px;
   line-height: 25px;
-  background: url(/images/sad_face.jpg) no-repeat 188px top;
-  background-size: 25px 25px;
   color: #5B6C72;
   font-size: 0.95em;
   text-indent: 30px;
+}
+
+.login-form .login-error-message:before {
+  content: "";
+  position: absolute;
+  left: 188px;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  background: url(/images/icons_big.jpg) no-repeat 0 -179px;
+  background-size: 100px 298px;
 }
 
 .login-form .register-info {
@@ -1184,10 +1218,26 @@ a:hover, a:active, a:focus {
   background: #F7F7F7;
 }
 
+.login-form .register-info .description {
+  color: #5B6C72;
+}
+
 .login-form .close-login-button {
   position: absolute;
   top: 10px;
   left: 10px;
+  background: none;
+  border: none;
+  font-size: 0;
+}
+
+.login-form .close-login-button:before {
+  content: "";
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  background: url(/images/icons.png) no-repeat -265px -115px;
+  background-size: 300px 160px;
 }
 /*~~ Login Overlay Ends ~~*/
 
