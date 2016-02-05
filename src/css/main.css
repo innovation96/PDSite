@@ -952,11 +952,45 @@ a:hover, a:active, a:focus {
   text-align: center;
 }
 
+.upload-form:before {
+  content: "";
+  position: absolute;
+  top: 124px;
+  left: 60px;
+  width: 100px;
+  height: 135px;
+  background: url(/images/icons_big.jpg) no-repeat 0 -69px;
+  background-size: 100px 298px;
+}
+
+/* used to cover the sad face icon in the background of .upload-form:before */
+.upload-form:after {
+  content: "";
+  position: absolute;
+  top: 234px;
+  left: 60px;
+  width: 25px;
+  height: 25px;
+  background: white;
+}
+
 .upload-drop-area {
+  position: relative;
   width: 100%;
   height: 320px;
   border: 4px dashed #CCCCCC;
   border-radius: 3px;
+}
+
+.upload-drop-area:after {
+  content: "";
+  position: absolute;
+  top: 112px;
+  left: 259px;
+  width: 69px;
+  height: 94px;
+  background: url(/images/icons_big.jpg) no-repeat 0 -205px;
+  background-size: 100px 298px;
 }
 
 .upload-form .title {
@@ -988,6 +1022,33 @@ a:hover, a:active, a:focus {
   width: 630px;
   height: 418px;
   text-align: center;
+}
+
+.edit-pundit-form .play-pause-button {
+  position: relative;
+  font-size: 0;
+}
+
+.edit-pundit-form .play-pause-button:after {
+  content: "";
+  left: 14px;
+  position: absolute;
+  background: url(/images/icons.png) no-repeat;
+  background-size: 150px 80px;
+}
+
+.edit-pundit-form .pause-button:after {
+  top: 12px;
+  width: 13px;
+  height: 16px;
+  background-position: -110px -41px;
+}
+
+.edit-pundit-form .play-button:after {
+  top: 13px;
+  width: 13px;
+  height: 14px;
+  background-position: -90px -43px;
 }
 
 .edit-pundit-form .title {
@@ -1068,13 +1129,13 @@ a:hover, a:active, a:focus {
 
 .edit-pundit-form .audio-start .slider {
   position: absolute;
-  left: -21px;
+  left: -20px;
   bottom: 15px;
   width: 23px;
-  height: 18px;
-  background: #3023AE;
+  height: 20px;
+  background: url(/images/icons.png) no-repeat -87px -57px;
+  background-size: 150px 80px;
   border: none;
-  border-radius: 9px 0 9px 9px;
 }
 
 .edit-pundit-form .audio-end .slider {
@@ -1082,10 +1143,10 @@ a:hover, a:active, a:focus {
   left: -2px;
   bottom: 15px;
   width: 23px;
-  height: 18px;
-  background: #3023AE;
+  height: 20px;
+  background: url(/images/icons.png) no-repeat -110px -57px;
+  background-size: 150px 80px;
   border: none;
-  border-radius: 0 9px 9px 9px;
 }
 
 /*~~TODO: delete these initial state styles below~~*/
