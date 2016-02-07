@@ -1,16 +1,13 @@
-'use strict';
-
 var gulp = require('gulp');
-var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 var eslint = require('gulp-eslint');
 var minifyCss = require('gulp-minify-css');
 var minifyHtml = require('gulp-minify-html');
+var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
+var webpack = require('webpack-stream');
 var buffer = require('vinyl-buffer');
 
 var config = {
@@ -60,14 +57,13 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-  browserify(config.paths.mainJs, { debug: true })
-    .bundle()
-    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-    .pipe(source('bundle.js'))
+  return gulp.src(config.paths.mainJs)
+    .pipe(webpack(require('./webpack.config.js')))
     .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
+    .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(uglify())
-    .pipe(sourcemaps.write('./')) // writes .map file
+    .pipe(rename('bundle.min.js'))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.paths.dist + '/js'))
     .pipe(connect.reload());
 });
