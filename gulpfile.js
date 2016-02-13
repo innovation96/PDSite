@@ -1,13 +1,14 @@
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 var eslint = require('gulp-eslint');
 var minifyCss = require('gulp-minify-css');
 var minifyHtml = require('gulp-minify-html');
-var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
-var webpack = require('webpack-stream');
 var buffer = require('vinyl-buffer');
 
 var config = {
@@ -16,6 +17,9 @@ var config = {
   paths: {
     html: './src/*.html',
     js: './src/js/**/*.js',
+    libs: [
+      './node_modules/jquery/dist/jquery.js'
+    ],
     css: [
       './src/css/reset.css',
       './src/css/vcenter.css',
@@ -57,13 +61,21 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-  return gulp.src(config.paths.mainJs)
-    .pipe(webpack(require('./webpack.config.js')))
+  gulp.src(config.paths.libs)
+    .pipe(gulp.dest(config.paths.dist + '/js'));
+
+  browserify(config.paths.mainJs, { debug: true })
+    .transform('babelify', {
+      plugins: ['transform-runtime'],
+      presets: ['es2015']
+    })
+    .bundle()
+    .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+    .pipe(source('bundle.js'))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(uglify())
-    .pipe(rename('bundle.min.js'))
-    .pipe(sourcemaps.write('./'))
+    .pipe(sourcemaps.write('./')) // writes .map file
     .pipe(gulp.dest(config.paths.dist + '/js'))
     .pipe(connect.reload());
 });
