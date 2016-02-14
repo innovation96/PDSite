@@ -100,7 +100,7 @@ class PostUploadOverlay {
     this._$selectedAudioEl = this.$el.find('.audio-selected');
 
     this._startLeftXOffset = this._$selectedAudioEl.offset().left - e.pageX;
-    this._startRightXOffset = -this._startLeftXOffset - this._$selectedAudioEl.width();
+    this._startRightXOffset = -this._startLeftXOffset - this._$selectedAudioEl.outerWidth();
 
     var $draggingArea = this.$el.find('.audio-adjust');
     this._leftmost = $draggingArea.offset().left;
@@ -117,6 +117,7 @@ class PostUploadOverlay {
         let left = e.pageX - this._leftmost + this._startLeftXOffset;
         if (left < 0) left = 0;
         let width = $counterpart.parent().position().left - left;
+        if (width < 5) return;
 
         $slider.parent().css('left', left);
         this._$selectedAudioEl.css({ left, width });
@@ -127,6 +128,7 @@ class PostUploadOverlay {
           left = this._rightmost - this._leftmost;
         }
         let width = left - $counterpart.parent().position().left;
+        if (width < 5) return;
 
         $slider.parent().css('left', left);
         this._$selectedAudioEl.css('width', width);
