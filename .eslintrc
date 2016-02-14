@@ -33,8 +33,7 @@
     "no-redeclare": 2,
     "no-shadow-restricted-names": 2, // disallow shadowing of names such as arguments
     "no-trailing-spaces": 2,
-    "no-unused-vars": 2,
-    "no-use-before-define": 2,
+    "no-unused-vars": [2, {"args": "none"}],
     "quotes": [1, "single"],
     "semi": [1, "always"],
     "strict": [1, "global"]
