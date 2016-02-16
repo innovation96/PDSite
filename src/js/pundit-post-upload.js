@@ -38,6 +38,9 @@ var templateHTML = `
 </div>
 `;
 
+{
+
+}
 class PostUploadOverlay {
   constructor() {
     this._impression = false;
@@ -59,8 +62,13 @@ class PostUploadOverlay {
   }
 
   bind() {
+    var cancelButton = this.$el.find('.cancel-button');
+
     var leftSlider = this.$el.find('.audio-start .slider');
     var rightSlider = this.$el.find('.audio-end .slider');
+
+    cancelButton.on('click', this.hide.bind(this));
+
     leftSlider
       .on('click', this._preventDefault)
       .on('mousedown', this._startDragging.bind(this));
@@ -83,13 +91,18 @@ class PostUploadOverlay {
 
   show() {
     if (this._impression) {
-
+      this.$el.show();
     }
     else {
       $(document.body).append(this.$el);
       this._impression = true;
       this.bind();
     }
+  }
+
+  hide(e) {
+    if (e) e.preventDefault();
+    this.$el.hide();
   }
 
   _startDragging(e) {
