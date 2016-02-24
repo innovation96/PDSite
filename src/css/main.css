@@ -56,7 +56,8 @@ body {
   line-height: 1;
   background: #F7F7F7;
   font-family: 'SF UI Text', Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
 a:link, a:visited {
@@ -370,7 +371,7 @@ a:hover, a:active, a:focus {
 
 .fixed-player .player-button {
   float: left;
-  margin-top: 20px;
+  margin-top: 19px;
   background: none;
   border: none;
   color: #FFFFFF;
@@ -379,7 +380,7 @@ a:hover, a:active, a:focus {
 }
 
 .fixed-player .play-pause-button {
-  margin: 15px 8px 0;
+  margin: 14px 8px 0;
   width: 40px;
   height: 27px;
 }
@@ -416,7 +417,7 @@ a:hover, a:active, a:focus {
 
 .fixed-player .player-progress {
   margin: 0 0 0 28px;
-  padding: 23px;
+  padding: 20px;
   width: 575px;
   font-weight: lighter;
 }
@@ -433,7 +434,7 @@ a:hover, a:active, a:focus {
 
 .fixed-player .progress-bar-wrapper {
   overflow: hidden;
-  margin-top: 7px;
+  margin-top: 9px;
   height: 2px;
   background: rgba(255, 255, 255, 0.2);
 }
@@ -473,8 +474,12 @@ a:hover, a:active, a:focus {
   width: 630px;
 }
 
+.pundit-sub-item {
+  padding-left: 75px;
+}
+
 .pundit-wrapper {
-  overflow: hidden;
+  overflow: auto;
   margin: 10px 0;
   padding: 20px;
   background: #FFFFFF;
@@ -484,12 +489,11 @@ a:hover, a:active, a:focus {
 
 .pundit-avatar {
   float: left;
-  margin: -5px 15px 0 0;
+  margin: 0 15px 0 0;
 }
 
 .pundit-details {
   float: left;
-  width: 513px;
 }
 
 .pundit-details .play-pause-button:after {
@@ -534,8 +538,21 @@ a:hover, a:active, a:focus {
 }
 
 .pundit-details .pundit-subject {
-  margin: 5px 0 20px 0;
-  font-size: 1.42em;
+  margin: 5px 0;
+}
+
+.pundit-subject p {
+  margin-bottom: 15px;
+}
+
+.pundit-subject img {
+  margin-top: 2px;
+  margin-right: 2px;
+}
+
+.pundit-subject a {
+  font-size: 14px;
+  color: #ccc;
 }
 
 .pundit-details .pundit-audio {
@@ -545,15 +562,15 @@ a:hover, a:active, a:focus {
 
 .pundit-details .pundit-audio .play-pause-button {
   position: relative;
-  float: left;
-  margin-right: 10px;
+  float: right;
   font-size: 0;
 }
 
 .pundit-details .pundit-audio .audio-wave {
   float: left;
   width: 400px;
-  height: 40px;
+  height: 21px;
+  margin-top: 10px;
   /* TODO just a placeholder here for now */
   background: url(/images/wave-placeholder.png) no-repeat;
 }
@@ -663,137 +680,16 @@ a:hover, a:active, a:focus {
   color: #CCCCCC;
 }
 
-.pundit-details .pundit-comments {
-  margin-top: 10px;
-  border-top: 1px solid #E5E5EA;
+.pundit-sub-item .audio-wave {
+  width: 290px !important;
 }
 
-.pundit-details .pundit-comment {
-  position: relative;
-  padding: 15px 0;
+.pundit-sub-item .pundit-subject p {
+  margin-bottom: 0;
 }
 
-.pundit-details .pundit-comment:first-child {
-  margin-top: 15px;
-}
-
-.pundit-details .pundit-comment .play-pause-button {
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 15px;
-  font-size: 0;
-}
-
-.pundit-details .pundit-comment:hover .play-pause-button {
-  display: block;
-}
-
-.pundit-details .comment-avatar-wrapper {
-  float: left;
-  margin-right: 15px;
-  width: 40px;
-  height: 40px;
-}
-
-.comment-details {
-  float: left;
-}
-
-.pundit-details .pundit-comment .audio-wave {
-  clear: both;
-  float: left;
-  overflow: hidden;
-  width: 400px;
-  height: 20px;
-  /* TODO just a placeholder here for now */
-  background: url(/images/wave-placeholder.png) no-repeat;
-  background-size: 161px 20px;
-}
-
-.pundit-details .comment-details .username {
-  float: left;
-  margin-bottom: 5px;
-}
-
-.pundit-comments .comment-actions {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 28px;
-  color: #CCCCCC;
-}
-
-.pundit-details .pundit-comment:hover .comment-actions {
-  display: block;
-}
-
-.pundit-comments .comment-actions .pundit-mark-button {
-  margin-right: 10px;
-  line-height: 1;
-  font-size: 28px;
-}
-
-.pundit-comments .pundit-mark-inappropriate-button {
-  cursor: pointer;
-  position: absolute;
-  left: -175px;
-  top: 20px;
-  width: 200px;
-  height: 50px;
-  background: #FFFFFF;
-  border: 1px solid #E5E5EA;
-  border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 0 3px 1px;
-  color: #D0021B;
-  font-size: 12px;
-  text-indent: 20px;
-}
-
-.pundit-comments .pundit-mark-inappropriate-button:before {
-  content: "";
-  position: absolute;
-  left: 30px;
-  top: 10px;
-  width: 14px;
-  height: 25px;
-  background: url(/images/icons.png) no-repeat -130px -25px;
-  background-size: 150px 80px;
-}
-
-.pundit-comments .comment-actions .comment-like-count {
-  position: relative;
-  top: -5px;
-}
-
-.pundit-comments .comment-actions .comment-like-button {
-  background: none;
-  border: none;
-  font-size: 0;
-}
-
-.pundit-comments .comment-actions .comment-like-button:before {
-  content: "";
-  display: inline-block;
-  width: 23px;
-  height: 20px;
-  background: url(/images/icons.png) no-repeat -55px -57px;
-  background-size: 150px 80px;
-}
-
-.pundit-comments .pundit-comments-more {
-  display: inline-block;
-  margin-top: 15px;
-}
-
-.pundit-comments .pundit-comments-more:after {
-  content: "";
-  display: inline-block;
-  margin-left: 10px;
-  width: 12px;
-  height: 8px;
-  background: url(/images/icons.png) no-repeat -78px -12px;
-  background-size: 150px 80px;
+.pundit-sub-item .pundit-show-all {
+  font-size: 14px;
 }
 
 /*~~ Pundit Ends ~~*/
