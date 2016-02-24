@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import PreUploadOverlay from './pundit-pre-upload';
 import PostUploadOverlay from './pundit-post-upload';
@@ -18,6 +20,3 @@ function showUploadPundit() {
 }
 
 bind();
-
-postUploadOverlay = new PostUploadOverlay();
-postUploadOverlay.show();

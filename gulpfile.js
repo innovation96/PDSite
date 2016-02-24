@@ -67,7 +67,7 @@ gulp.task('js', function() {
   browserify(config.paths.mainJs, { debug: true })
     .transform('babelify', {
       plugins: ['transform-runtime'],
-      presets: ['es2015']
+      presets: ['es2015', 'react']
     })
     .bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
