@@ -274,7 +274,7 @@ a:hover, a:active, a:focus {
 /*~~ Page Header ~~*/
 .page-header {
   width: 100%;
-  height: 75px;
+  height: 55px;
   background: #5B6C72;
   text-align: center;
 }
@@ -288,7 +288,7 @@ a:hover, a:active, a:focus {
 
 .page-header .logo {
   float: left;
-  margin-top: 18px;
+  margin-top: 7px;
   width: 138px;
   height: 40px;
   text-indent: -9999em;
@@ -298,7 +298,7 @@ a:hover, a:active, a:focus {
 .page-header .global-search-form {
   position: relative;
   float: left;
-  margin: 25px 62px 0 76px;
+  margin: 12px 62px 0 80px;
 }
 
 .page-header .global-search-button {
@@ -325,7 +325,7 @@ a:hover, a:active, a:focus {
 
 .page-header .header-avatar {
   float: right;
-  margin-top: 22px;
+  margin-top: 7px;
 }
 
 .page-header .upload-button,
@@ -468,13 +468,42 @@ a:hover, a:active, a:focus {
 /*~~ Global Player Ends ~~*/
 
 /*~~ Pundit ~~*/
+.pundit-talk-header {
+  text-align: center;
+  height: 110px;
+  background-color: #08A1BF;
+}
+
+.pundit-header-tag {
+  display: inline-block;
+  color: white;
+  font-size: 19px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.pundit-header-tag p {
+  color: #333;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.pundit-header-tag a:link {
+  color: white;
+}
+
+.pundit-header-bar {
+  margin-top: 8px;
+}
+
 .page-body {
-  margin: 10px auto;
+  margin: 50px auto;
   padding-bottom: 50px;
   width: 630px;
 }
 
 .pundit-talk {
+  margin: 10px auto;
   width: 500px;
 }
 
