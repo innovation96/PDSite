@@ -33,23 +33,21 @@ const TalkPage = React.createClass({
           <img src="images/talk_actions_container.png" height="52" width="158" />
         </div>
       </div>
-      <div className="page-body">
-        <div className="pundit-reply">
-          <a className="pundit-avatar avatar-medium" href="#"><img src="images/yeh_avatar.jpg" width="60" height="60" /></a>
-          <div className="pundit-wrapper">
-            <div className="pundit-details">
-              <div className="pundit-tag">
-                <a href="#" className="username">username</a>
-              </div>
-              <div className="pundit-audio">
-                <button className="play-pause-button pause-button">Pause</button>
-                <div className="audio-wave"></div>
-              </div>
-              <div className="pundit-subject">
-                <p>How many licks does it take to get to the center of a tootsie pop? Is it a lot?</p>
-                <img src="images/link_small_icon.png" width="15" height="15" />
-                <a href="#" className="pundit-link">http://techcrunch.com/2016/02/05/...</a>
-              </div>
+      <div className="page-body pundit-reply">
+        <a className="pundit-avatar avatar-medium" href="#"><img src="images/yeh_avatar.jpg" width="60" height="60" /></a>
+        <div className="pundit-wrapper">
+          <div className="pundit-details">
+            <div className="pundit-tag">
+              <a href="#" className="username">username</a>
+            </div>
+            <div className="pundit-audio">
+              <button className="play-pause-button pause-button">Pause</button>
+              <div className="audio-wave"></div>
+            </div>
+            <div className="pundit-subject">
+              <p>How many licks does it take to get to the center of a tootsie pop? Is it a lot?</p>
+              <img src="images/link_small_icon.png" width="15" height="15" />
+              <a href="#" className="pundit-link">http://techcrunch.com/2016/02/05/...</a>
             </div>
           </div>
         </div>
