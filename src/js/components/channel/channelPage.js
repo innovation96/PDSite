@@ -5,12 +5,10 @@ const ChannelPage = React.createClass({
     return (
     <div className="page-body">
       <div className="channel-wrapper">
-        <button className="action-button-hollow-blue join-channel-button">Join this Channel</button>
+        <button className="action-button-hollow-blue join-channel-button">+ Join</button>
         <h2 className="title"><span className="hash-sign">#</span><span className="channel-title">stevenuniverse...</span></h2>
         <p className="channel-detail">323 Members • 122 Posts</p>
         <ul className="channel-members-list">
-          <li className="channel-member"><a className="avatar-small" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
-          <li className="channel-member"><a className="avatar-small" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
           <li className="channel-member"><a className="avatar-small" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
           <li className="channel-member"><a className="avatar-small" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
           <li className="channel-member"><a className="avatar-small" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>

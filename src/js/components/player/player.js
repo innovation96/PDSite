@@ -21,7 +21,9 @@ const Player = React.createClass({
           <a href="#" className="avatar-small-tiny">
             <img src="/images/jwt_avatar.jpg" width="35" height="35" />
           </a>
-          <a href="#" className="username">billyshawz</a> → <a href="#" className="tag">#politics</a>
+          <div className="player-tag">
+            <a href="#" className="username">billyshawz</a> → <a href="#" className="tag">#politics</a>
+          </div>
         </div>
       </div>
     </div>
