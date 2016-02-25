@@ -1,22 +1,31 @@
-import $ from 'jquery';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-import PreUploadOverlay from './pundit-pre-upload';
-import PostUploadOverlay from './pundit-post-upload';
+import Header from './components/header/header';
+import Player from './components/player/player';
+import HomePage from './components/home/homePage';
+import ChannelPage from './components/channel/channelPage';
+import TalkPage from './components/talk/talkPage';
 
-var preUploadOverlay = null;
-var postUploadOverlay = null;
-
-function bind() {
-  $('.page-header .upload-button').on('click', showUploadPundit);
-}
-
-function showUploadPundit() {
-  if (!preUploadOverlay) {
-    preUploadOverlay = new PreUploadOverlay();
+const App = React.createClass({
+  render() {
+    return (
+      <div>
+        <Header />
+        {this.props.children}
+        <Player />
+      </div>
+    );
   }
-  preUploadOverlay.show();
-}
+});
 
-bind();
+render((
+  <Router history={hashHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={HomePage} />
+      <Route path="channel" component={ChannelPage} />
+      <Route path="talk" component={TalkPage} />
+    </Route>
+  </Router>
+), document.getElementById('punditApp'));

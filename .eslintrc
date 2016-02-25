@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "ecmaFeatures": {
     "arrowFunctions": true,
     "binaryLiterals": true,
@@ -37,11 +38,13 @@
     "no-unused-vars": [2, {"args": "none"}],
     "quotes": [1, "single"],
     "semi": [1, "always"],
-    "strict": [1, "global"]
+    "strict": 0,
+    "react/jsx-uses-react": 1
   },
   "env": {
     "browser": true,// browser global variables
     "node": true,
     "jquery": true
-  }
+  },
+  "plugins": [ "react" ]
 }
