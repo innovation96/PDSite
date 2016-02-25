@@ -69,6 +69,10 @@ a:hover, a:active, a:focus {
   color: #08A1BF;
 }
 
+input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .two-x-bg-icons {
   background-size: 300px 160px!important;
 }
@@ -85,9 +89,9 @@ a:hover, a:active, a:focus {
 
 .action-button-hollow-blue {
   background: transparent;
-  border: 1px solid #08A1BF;
-  border-radius: 4px;
-  color: #08A1BF;
+  border: 2px solid black;
+  border-radius: 16px;
+  color: black;
 }
 
 .action-button-white {
@@ -171,11 +175,14 @@ a:hover, a:active, a:focus {
 .global-search {
   padding: 0 10px 0 30px;
   width: 260px;
-  height: 30px;
+  height: 38px;
   background: rgba(255, 255, 255, 0.2);
   border: none;
-  border-radius: 15px;
+  border-radius: 19px;
   color: #FFFFFF;
+  text-align: center;
+  font-size: 14px;
+  font-weight: lighter;
 }
 
 .search-results {
@@ -298,13 +305,13 @@ a:hover, a:active, a:focus {
 .page-header .global-search-form {
   position: relative;
   float: left;
-  margin: 12px 62px 0 80px;
+  margin: 8px 62px 0 80px;
 }
 
 .page-header .global-search-button {
   position: absolute;
-  top: 3px;
-  left: 5px;
+  top: 7px;
+  left: 7px;
   width: 24px;
   height: 24px;
   border: none;
@@ -417,7 +424,7 @@ a:hover, a:active, a:focus {
 
 .fixed-player .player-progress {
   margin: 0 0 0 28px;
-  padding: 20px;
+  padding: 19px;
   width: 575px;
   font-weight: lighter;
 }
@@ -450,8 +457,16 @@ a:hover, a:active, a:focus {
 }
 
 .fixed-player .avatar-small-tiny {
+  display: block;
   position: relative;
   top: 10px;
+}
+
+.fixed-player .player-tag {
+  position: relative;
+  margin-left: 45px;
+  bottom: 17px;
+  font-size: 15px;
 }
 
 .fixed-player .username:link,
@@ -497,7 +512,7 @@ a:hover, a:active, a:focus {
 }
 
 .page-body {
-  margin: 50px auto;
+  margin: 20px auto;
   padding-bottom: 50px;
   width: 630px;
 }
@@ -517,6 +532,10 @@ a:hover, a:active, a:focus {
 
 .pundit-talk .pundit-details a {
   font-weight: normal;
+}
+
+.pundit-reply {
+  margin: 50px auto;
 }
 
 .pundit-wrapper {
@@ -726,7 +745,7 @@ a:hover, a:active, a:focus {
 /*~~ Channel ~~*/
 .channel-wrapper {
   position: relative;
-  padding: 60px 20px 10px;
+  padding: 30px 20px 10px;
   background: #FFFFFF;
   border: 1px solid #E5E5EA;
   border-radius: 4px;
@@ -735,11 +754,12 @@ a:hover, a:active, a:focus {
 
 .channel-wrapper .join-channel-button {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 134px;
-  height: 28px;
-  font-size: 0.86em;
+  top: 15px;
+  right: 15px;
+  width: 70px;
+  height: 32px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .channel-wrapper .title {
@@ -750,7 +770,7 @@ a:hover, a:active, a:focus {
 .channel-wrapper .hash-sign {
   position: relative;
   top: -15px;
-  margin-right: 5px;
+  margin-right: 15px;
   color: rgba(8, 161, 191, 0.3);
   font-size: 3.7em;
 }
@@ -759,10 +779,12 @@ a:hover, a:active, a:focus {
   position: relative;
   top: -40px;
   font-size: 48px;
+  color: #08A1BF;
 }
 
 .channel-wrapper .channel-detail {
   color: #5B6C72;
+  margin-top: 25px;
 }
 
 .channel-wrapper .channel-members-list {
@@ -776,7 +798,7 @@ a:hover, a:active, a:focus {
 .channel-wrapper .channel-member {
   float: left;
   margin-left: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .channel-wrapper .channel-member:nth-child(12n+1) {

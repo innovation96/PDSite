@@ -9,7 +9,7 @@ const Header = React.createClass({
         <div className="page-header-content">
           <a href="/"><h1 className="logo two-x-bg-icons">Pundit</h1></a>
           <form action="#" className="global-search-form">
-            <input type="search" id="globalSearch" className="global-search" placeholder="search" />
+            <input type="search" id="globalSearch" className="global-search" placeholder="Search for people and channels" />
             <button className="global-search-button">Search</button>
           </form>
           <a className="header-avatar avatar-small" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a>
