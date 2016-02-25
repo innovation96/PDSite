@@ -474,12 +474,24 @@ a:hover, a:active, a:focus {
   width: 630px;
 }
 
-.pundit-sub-item {
-  padding-left: 75px;
+.pundit-talk {
+  width: 500px;
+}
+
+.pundit-talk .pundit-subject {
+  font-weight: bold;
+}
+
+.pundit-talk .pundit-details {
+  width: 400px;
+}
+
+.pundit-talk .pundit-details a {
+  font-weight: normal;
 }
 
 .pundit-wrapper {
-  overflow: auto;
+  overflow: hidden;
   margin: 10px 0;
   padding: 20px;
   background: #FFFFFF;
@@ -542,7 +554,7 @@ a:hover, a:active, a:focus {
 }
 
 .pundit-subject p {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .pundit-subject img {
@@ -678,18 +690,6 @@ a:hover, a:active, a:focus {
 .pundit-details .pundit-note-description {
   float: right;
   color: #CCCCCC;
-}
-
-.pundit-sub-item .audio-wave {
-  width: 290px !important;
-}
-
-.pundit-sub-item .pundit-subject p {
-  margin-bottom: 0;
-}
-
-.pundit-sub-item .pundit-show-all {
-  font-size: 14px;
 }
 
 /*~~ Pundit Ends ~~*/
