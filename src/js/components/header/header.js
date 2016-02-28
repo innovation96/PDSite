@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 const Header = React.createClass({
   // backup an unused markup here
@@ -7,7 +8,7 @@ const Header = React.createClass({
     return (
       <header className="page-header">
         <div className="page-header-content">
-          <a href="/"><h1 className="logo two-x-bg-icons">Pundit</h1></a>
+          <Link to="/"><h1 className="logo two-x-bg-icons">Pundit</h1></Link>
           <form action="#" className="global-search-form">
             <input type="search" id="globalSearch" className="global-search" placeholder="Search for people and channels" />
             <button className="global-search-button">Search</button>
