@@ -7,10 +7,10 @@ const Talk = React.createClass({
   render() {
     var link;
     if (this.props.talk.link) {
-        link = (<div>
-                  <img src="images/link_small_icon.png" width="15" height="15" />
-                  <a href={this.props.talk.link} className="pundit-link">{this.props.talk.link}</a>
-                </div>);
+      link = (<div>
+        <img src="images/link_small_icon.png" width="15" height="15" />
+        <a href={this.props.talk.link} className="pundit-link">{this.props.talk.link}</a>
+      </div>);
     }
     var channel;
     if (this.props.talk.channels.length) {
