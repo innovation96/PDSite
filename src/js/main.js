@@ -7,6 +7,7 @@ import Player from './components/player/player';
 import HomePage from './components/home/homePage';
 import ChannelPage from './components/channel/channelPage';
 import TalkPage from './components/talk/talkPage';
+import UserPage from './components/user/userPage';
 
 const App = React.createClass({
   render() {
@@ -26,6 +27,7 @@ render((
       <IndexRoute component={HomePage} />
       <Route path="channel" component={ChannelPage} />
       <Route path="talk" component={TalkPage} />
+      <Route path="users/:id" component={UserPage} />
     </Route>
   </Router>
 ), document.getElementById('punditApp'));
