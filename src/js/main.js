@@ -26,7 +26,7 @@ render((
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
       <Route path="channel" component={ChannelPage} />
-      <Route path="talk" component={TalkPage} />
+      <Route path="talks/:id" component={TalkPage} />
       <Route path="users/:id" component={UserPage} />
     </Route>
   </Router>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router';
+import settings from '../../settings';
 
 // Backup DOM elements. Its position is between line 50 and 51,
 // below this guy: <a href="#" className="pundit-link">http://techcrunch.com/2016/02/05/...</a>
@@ -21,39 +23,91 @@ import React from 'react';
 */
 
 const TalkPage = React.createClass({
+  getInitialState() {
+    return {
+      talk: {
+        _id: '',
+        title: '',
+        url: '',
+        likers: [],
+        reposts: [],
+        audio: {},
+        user: {},
+        channels: []
+      }
+    };
+  },
+
+  componentDidMount() {
+    $.ajax({
+      url: settings.apiBase + 'talks/' + this.props.params.id,
+      data: 'populate=user,channels',
+      dataType: 'json',
+      success: this.didFetchTalks,
+      error: this.didFailFetchingTalks
+    });
+  },
+
   render() {
+    var talk = this.state.talk;
+    var channelJsx = null;
+    if (talk.channels.length) {
+      channelJsx = (
+         <span>→ <a href="#" className="tag">#{talk.channels[0].name}</a></span>
+      );
+    }
+
     return (
     <div>
       <div className="pundit-talk-header">
         <div className="pundit-header-tag">
-          <a href="#" className="username">billyshawz</a> → <a href="#" className="tag">#healthyliving</a>
-          <p>15 Likes, 3 Posts</p>
+          <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
+          <p>{talk.likers.length} Likes, {talk.reposts.length} Posts</p>
         </div>
         <div className="pundit-header-bar">
           <img src="images/talk_actions_container.png" height="52" width="158" />
         </div>
       </div>
       <div className="page-body pundit-reply">
-        <a className="pundit-avatar avatar-medium" href="#"><img src="images/yeh_avatar.jpg" width="60" height="60" /></a>
+        <Link className="pundit-avatar avatar-medium" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="60" height="60" /></Link>
         <div className="pundit-wrapper">
           <div className="pundit-details">
             <div className="pundit-tag">
-              <a href="#" className="username">username</a>
+              <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link>
             </div>
             <div className="pundit-audio">
               <button className="play-pause-button pause-button">Pause</button>
               <div className="audio-wave"></div>
             </div>
             <div className="pundit-subject">
-              <p>How many licks does it take to get to the center of a tootsie pop? Is it a lot?</p>
+              <p>{talk.title}</p>
               <img src="images/link_small_icon.png" width="15" height="15" />
-              <a href="#" className="pundit-link">http://techcrunch.com/2016/02/05/...</a>
+              <a href={talk.url} className="pundit-link">{talk.url}</a>
             </div>
           </div>
         </div>
       </div>
     </div>
     );
+  },
+
+  didFetchTalks(data) {
+    this.setState({
+      talk: {
+        _id: data.talk._id,
+        title: data.talk.title,
+        url: data.talk.shortUrl,
+        likers: data.talk.likers,
+        reposts: data.talk.reposts,
+        audio: data.talk.audioIntroduction,
+        user: data.talk.user,
+        channels: data.talk.channels
+      }
+    });
+  },
+
+  didFailFetchingTalks($xhr, status, error) {
+    console.error(error);
   }
 });
 
