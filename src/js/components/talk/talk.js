@@ -17,21 +17,21 @@ const Talk = React.createClass({
       channel = (<Link to={'/channels/' + this.props.talk.channels[0]._id} className="tag"> → #{this.props.talk.channels[0].name}</Link>);
     }
     return (
-      <div className="pundit-wrapper">
-        <Link to={'/users/' + this.props.talk.user._id} className="pundit-avatar avatar-small">
-          <img src={this.props.talk.user.profilePicture} width="40" height="40" />
-        </Link>
-        <div className="pundit-details">
-          <div className="pundit-tag">
-            <Link to={'/users/' + this.props.talk.user._id} className="username">{this.props.talk.user.name}</Link>
-            {channel}
-          </div>
-          <div className="pundit-subject">
-            <p>{this.props.talk.title}</p>
-            {link}
-          </div>
+    <div className="pundit-wrapper">
+      <Link to={'/users/' + this.props.talk.user._id} className="pundit-avatar avatar-small">
+        <img src={this.props.talk.user.profilePicture} width="40" height="40" />
+      </Link>
+      <div className="pundit-details">
+        <div className="pundit-tag">
+          <Link to={'/users/' + this.props.talk.user._id} className="username">{this.props.talk.user.name}</Link>
+          {channel}
+        </div>
+        <div className="pundit-subject">
+          <p>{this.props.talk.title}</p>
+          {link}
         </div>
       </div>
+    </div>
     );
   }
 });

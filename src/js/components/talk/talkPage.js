@@ -30,7 +30,7 @@ const TalkPage = React.createClass({
         title: '',
         url: '',
         likers: [],
-        reposts: [],
+        replies: [],
         audio: {},
         user: {},
         channels: []
@@ -62,7 +62,7 @@ const TalkPage = React.createClass({
       <div className="pundit-talk-header">
         <div className="pundit-header-tag">
           <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
-          <p>{talk.likers.length} Likes, {talk.reposts.length} Posts</p>
+          <p>{talk.likers.length} Likes, {talk.replies.length} Posts</p>
         </div>
         <div className="pundit-header-bar">
           <img src="images/talk_actions_container.png" height="52" width="158" />
@@ -98,7 +98,7 @@ const TalkPage = React.createClass({
         title: data.talk.title,
         url: data.talk.shortUrl,
         likers: data.talk.likers,
-        reposts: data.talk.reposts,
+        replies: data.talk.replies,
         audio: data.talk.audioIntroduction,
         user: data.talk.user,
         channels: data.talk.channels
