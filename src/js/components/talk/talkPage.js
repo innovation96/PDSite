@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Wavesurfer from 'react-wavesurfer';
 import settings from '../../settings';
+import ReplyList from '../reply/replyList';
 
 // Backup DOM elements. Its position is between line 50 and 51,
 // below this guy: <a href="#" className="pundit-link">http://techcrunch.com/2016/02/05/...</a>
@@ -57,41 +59,61 @@ const TalkPage = React.createClass({
       );
     }
 
+    var wavesurfer = null;
+    if (talk.audio.url) {
+      wavesurfer = (
+        <Wavesurfer
+          audioFile={talk.audio.url}
+          pos={0}
+          onPosChange={this.handlePosChange}
+          playing={false} />
+      );
+    }
+
+    var playPauseBtnClass = talk.audio.isPlaying ? 'pause-button' : 'play-button';
+    var playPauseBtnText = talk.audio.isPlaying ? 'Pause' : 'Play';
+
     return (
     <div>
-      <div className="pundit-talk-header">
-        <div className="pundit-header-tag">
-          <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
-          <p>{talk.likers.length} Likes, {talk.replies.length} Posts</p>
+      <div>
+        <div className="pundit-talk-header">
+          <div className="pundit-header-tag">
+            <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
+            <p>{talk.likers.length} Likes, {talk.replies.length} Posts</p>
+          </div>
+          <div className="pundit-header-bar">
+            <img src="images/talk_actions_container.png" height="52" width="158" />
+          </div>
         </div>
-        <div className="pundit-header-bar">
-          <img src="images/talk_actions_container.png" height="52" width="158" />
-        </div>
-      </div>
-      <div className="page-body pundit-reply">
-        <Link className="pundit-avatar avatar-medium" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="60" height="60" /></Link>
-        <div className="pundit-wrapper">
-          <div className="pundit-details">
-            <div className="pundit-tag">
-              <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link>
-            </div>
-            <div className="pundit-audio">
-              <button className="play-pause-button pause-button">Pause</button>
-              <div className="audio-wave"></div>
-            </div>
-            <div className="pundit-subject">
-              <p>{talk.title}</p>
-              <img src="images/link_small_icon.png" width="15" height="15" />
-              <a href={talk.url} className="pundit-link">{talk.url}</a>
+        <div className="page-body pundit-reply">
+          <Link className="pundit-avatar avatar-medium" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="60" height="60" /></Link>
+          <div className="pundit-wrapper">
+            <div className="pundit-details">
+              <div className="pundit-tag">
+                <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link>
+              </div>
+              <div className="pundit-audio">
+                <button className={'play-pause-button ' + playPauseBtnClass}>{playPauseBtnText}</button>
+                {/*<div className="audio-wave">{wavesurfer}</div>*/}
+              </div>
+              <div className="pundit-subject">
+                <p>{talk.title}</p>
+                <img src="images/link_small_icon.png" width="15" height="15" />
+                <a href={talk.url} className="pundit-link">{talk.url}</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <ReplyList talkId={this.props.params.id} />
     </div>
     );
   },
 
   didFetchTalks(data) {
+    data.talk.audioIntroduction = data.talk.audioIntroduction || {};
+    data.talk.audioIntroduction.isPlayting = false;
+
     this.setState({
       talk: {
         _id: data.talk._id,
@@ -108,6 +130,10 @@ const TalkPage = React.createClass({
 
   didFailFetchingTalks($xhr, status, error) {
     console.error(error);
+  },
+
+  handlePosChange() {
+
   }
 });
 
