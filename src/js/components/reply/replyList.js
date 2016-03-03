@@ -1,6 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 import settings from '../../settings';
+import Event from '../../events';
+import dispatcher from '../../dispatcher';
 import Reply from './reply';
 
 const ReplyList = React.createClass({
@@ -34,6 +36,15 @@ const ReplyList = React.createClass({
   didFetchReplies: function(data) {
     // TODO: Nested replies and user data
     this.setState(data);
+
+    data.data.replies.forEach(reply => {
+      var audio = reply.answer.aws;
+      dispatcher.emit(Event.PUSH_AUDIO, {
+        key: audio.key,
+        timeTotal: audio.len,
+        url: audio.url
+      });
+    });
   },
 
   didFailFetchingReplies: function($xhr, status, error) {

@@ -1,20 +1,61 @@
 import React from 'react';
+import {Howl} from 'howler';
+import Event from '../../events';
+import dispatcher from '../../dispatcher';
+
+var _sound = null;
+var _playingTimeTimer = null;
+
+function MMSSFromSeconds(totalSec) {
+  totalSec = Math.round(totalSec);
+  var minutes = parseInt(totalSec / 60, 10) % 60;
+  var seconds = totalSec % 60;
+  return (minutes < 10 ? '0' + minutes : minutes) + ':' + (seconds  < 10 ? '0' + seconds : seconds);
+}
 
 const Player = React.createClass({
+  getInitialState() {
+    return {
+      isPlaying: false,
+      audioList: [],
+      audioIndex: -1,
+      timeElapsed: 0,
+      timeRemaining: 0,
+      timeTotal: 0,
+    };
+  },
+
+  componentDidMount() {
+    dispatcher.on(Event.PUSH_AUDIO, (data) => {
+      var audioList = this.state.audioList;
+      audioList.push(data);
+      this.setState({ audioList: audioList });
+    });
+
+    dispatcher.on(Event.UNSHIFT_AUDIO, (data) => {
+      var audioList = this.state.audioList;
+      audioList.unshift(data);
+      this.setState({ audioList: audioList });
+    });
+  },
+
   render() {
+    var playPauseBtnClass = this.state.isPlaying ? 'pause-button' : 'play-button';
+    var playPauseBtnText = this.state.isPlaying ? 'Pause' : 'Play';
+
     return (
     <div className="fixed-player clearfix">
       <div className="player-wrapper">
         <div className="player-component player-control">
           <button className="player-button prev-button">Prev</button>
-          <button className="player-button play-pause-button pause-button">Pause</button>
+          <button className={'player-button play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
           <button className="player-button next-button">Next</button>
         </div>
         <div className="player-component player-progress">
-          <span className="elapsed-time">0:10</span>
-          <span className="remaining-time">0:30</span>
+          <span className="elapsed-time">{MMSSFromSeconds(this.state.timeElapsed)}</span>
+          <span className="remaining-time">{MMSSFromSeconds(this.state.timeRemaining)}</span>
           <div className="progress-bar-wrapper">
-            <div className="progress-bar" style={{width: '30%'}}></div>
+            <div className="progress-bar" style={{width: this.state.timeTotal === 0 ? '0' : Math.round(this.state.timeElapsed/this.state.timeTotal * 100) + '%'}}></div>
           </div>
         </div>
         <div className="player-component track-info">
@@ -28,6 +69,74 @@ const Player = React.createClass({
       </div>
     </div>
     );
+  },
+
+  playPauseAudio(e) {
+    e.preventDefault();
+    if (this.state.audioList.length === 0) return;
+
+    var isPlaying = !this.state.isPlaying;
+    this.setState({ isPlaying: isPlaying });
+
+    if (this.state.audioIndex === -1) {
+      this.playAudioAtIndex(0);
+      return;
+    }
+
+    if (isPlaying) {
+      if (_sound) _sound.play();
+      this.syncTime();
+    }
+    else {
+      if (_sound) _sound.pause();
+      this.desyncTime();
+    }
+  },
+
+  playAudioAtIndex(index) {
+    if (_sound) _sound.stop();
+    _sound = new Howl({
+      urls: [this.state.audioList[index].url],
+      autoplay: true,
+      onplay: () => {
+        this.syncTime();
+      },
+      onpause: () => {
+        console.log(index, 'paused');
+      },
+      onend: () => {
+        // TODO: looks like onend disregards pause. Maybe it's due to the cross domain issue?
+        console.log(index, 'ended');
+        this.desyncTime();
+        if (++index < this.state.audioList.length) {
+          this.playAudioAtIndex(index);
+        }
+      }
+    });
+
+    this.setState({
+      audioIndex: index,
+      timeElapsed: 0,
+      timeRemaining: this.state.audioList[index].timeTotal,
+      timeTotal: this.state.audioList[index].timeTotal
+    });
+  },
+
+  syncTime() {
+    if (_sound.pos()) {
+      this.setState({
+        timeElapsed: _sound.pos(),
+        timeRemaining: this.state.audioList[this.state.audioIndex].timeTotal - _sound.pos()
+      });
+    }
+
+    _playingTimeTimer = setTimeout(() => {
+      this.syncTime();
+    }, 1000);
+  },
+
+  desyncTime() {
+    clearTimeout(_playingTimeTimer);
   }
 });
 

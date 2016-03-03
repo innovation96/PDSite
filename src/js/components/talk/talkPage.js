@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import Wavesurfer from 'react-wavesurfer';
 import settings from '../../settings';
+import Event from '../../events';
+import dispatcher from '../../dispatcher';
 import ReplyList from '../reply/replyList';
 
 // Backup DOM elements. Its position is between line 50 and 51,
@@ -93,7 +95,7 @@ const TalkPage = React.createClass({
                 <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link>
               </div>
               <div className="pundit-audio">
-                <button className={'play-pause-button ' + playPauseBtnClass}>{playPauseBtnText}</button>
+                <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
                 {/*<div className="audio-wave">{wavesurfer}</div>*/}
               </div>
               <div className="pundit-subject">
@@ -126,10 +128,21 @@ const TalkPage = React.createClass({
         channels: data.talk.channels
       }
     });
+
+    dispatcher.emit(Event.UNSHIFT_AUDIO, {
+      key: data.talk.audioIntroduction.key,
+      timeTotal: data.talk.audioIntroduction.len,
+      url: data.talk.audioIntroduction.url
+    });
   },
 
   didFailFetchingTalks($xhr, status, error) {
     console.error(error);
+  },
+
+  playPauseAudio(e) {
+    e.preventDefault();
+    console.log(e);
   },
 
   handlePosChange() {
