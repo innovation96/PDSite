@@ -50,6 +50,16 @@ const TalkPage = React.createClass({
       success: this.didFetchTalks,
       error: this.didFailFetchingTalks
     });
+
+    dispatcher.on(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
+    dispatcher.on(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
+    dispatcher.on(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
+  },
+
+  componentWillUnmount() {
+    dispatcher.removeListener(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
+    dispatcher.removeListener(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
+    dispatcher.removeListener(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
   },
 
   render() {
@@ -114,7 +124,7 @@ const TalkPage = React.createClass({
 
   didFetchTalks(data) {
     data.talk.audioIntroduction = data.talk.audioIntroduction || {};
-    data.talk.audioIntroduction.isPlayting = false;
+    data.talk.audioIntroduction.isPlaying = false;
 
     this.setState({
       talk: {
@@ -142,7 +152,31 @@ const TalkPage = React.createClass({
 
   playPauseAudio(e) {
     e.preventDefault();
-    console.log(e);
+    dispatcher.emit(Event.PAGE_AUDIO_TRACK_CHANGE, {
+      key: this.state.talk.audio.key
+    });
+  },
+
+  syncAudioTrack(data) {
+    if (data.key !== this.state.talk.audio.key) {
+      let talk = this.state.talk;
+      let audio = talk.audio;
+      audio.isPlaying = false;
+      this.setState({ talk: talk });
+    }
+  },
+
+  syncAudioPlayingState(data) {
+    if (data.key === this.state.talk.audio.key) {
+      let talk = this.state.talk;
+      let audio = talk.audio;
+      audio.isPlaying = data.isPlaying;
+      this.setState({ talk: talk });
+    }
+  },
+
+  syncAudioProgress(data) {
+
   },
 
   handlePosChange() {

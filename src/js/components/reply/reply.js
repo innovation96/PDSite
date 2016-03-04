@@ -18,7 +18,7 @@ const Reply = React.createClass({
             <Link to={'/users/' + reply.creator._id} className="username">{reply.creator.name}</Link>
           </div>
           <div className="pundit-audio">
-            <button className={'play-pause-button ' + playPauseBtnClass}>{playPauseBtnText}</button>
+            <button className={'play-pause-button ' + playPauseBtnClass} data-audio-key={reply.answer.aws.key} onClick={this.props.playPauseAudio}>{playPauseBtnText}</button>
             {/*<div className="audio-wave">{wavesurfer}</div>*/}
           </div>
           <div className="pundit-subject">
