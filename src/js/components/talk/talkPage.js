@@ -117,7 +117,7 @@ const TalkPage = React.createClass({
           </div>
         </div>
       </div>
-      <ReplyList ids={talk.replies} from="talk" />
+      <ReplyList ids={talk.replies} from="talk" prevAudioKey={talk.audio.key} />
     </div>
     );
   },

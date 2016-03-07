@@ -28,7 +28,7 @@ const Reply = React.createClass({
             <a href={reply.url} className="pundit-link">{reply.url}</a>*/}
           </div>
         </div>
-        <ReplyList ids={reply.replies} from="reply" />
+        <ReplyList ids={reply.replies} from="reply" prevAudioKey={reply.answer.aws.key} />
       </div>
     </div>
     );

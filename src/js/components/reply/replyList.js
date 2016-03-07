@@ -17,7 +17,7 @@ const ReplyList = React.createClass({
   },
 
   componentWillMount() {
-    this.fetchReplies(this.props);
+    this.fetchReplies(this.props, true);
   },
 
   componentDidMount() {
@@ -44,27 +44,42 @@ const ReplyList = React.createClass({
     );
   },
 
-  fetchReplies(props) {
+  fetchReplies(props, isForce) {
     if (props.ids.length > 0) {
-      $.ajax({
-        url: settings.apiBase + 'replies',
-        data: 'populate=creator&ids=' + props.ids.join(','),
-        dataType: 'json',
-        success: this.didFetchReplies,
-        error: this.didFailFetchingReplies
-      });
+      // When play/pause UI state update triggers, we don't want
+      // to redo ajax call. Check the length for sure.
+      if (isForce || props.ids.length !== this.props.ids.length) {
+        $.ajax({
+          url: settings.apiBase + 'replies',
+          data: 'populate=creator&ids=' + props.ids.join(','),
+          dataType: 'json',
+          success: this.didFetchReplies,
+          error: this.didFailFetchingReplies
+        });
+      }
     }
   },
 
   didFetchReplies(data) {
-    data.data.replies.forEach(reply => {
+    data.data.replies.forEach((reply, i) => {
       var audio = reply.answer.aws;
       audio.isPlaying = false;
-      dispatcher.emit(Event.PUSH_AUDIO, {
+
+      var dispatchData = {
         key: audio.key,
         timeTotal: audio.len,
         url: audio.url
-      });
+      };
+
+      if (this.props.from === 'reply') {
+        if (i === 0) dispatchData.prevKey = this.props.prevAudioKey;
+        else dispatchData.prevKey = data.data.replies[i - 1].answer.aws.key;
+        dispatcher.emit(Event.INSERT_AUDIO, dispatchData);
+      }
+      else {
+        dispatcher.emit(Event.PUSH_AUDIO, dispatchData);
+      }
+
     });
 
     // TODO: this way causes more ajax calles to fetch

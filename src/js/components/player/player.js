@@ -26,15 +26,28 @@ const Player = React.createClass({
   },
 
   componentDidMount() {
-    dispatcher.on(Event.PUSH_AUDIO, (data) => {
+    dispatcher.on(Event.PUSH_AUDIO, data => {
       var audioList = this.state.audioList;
       audioList.push(data);
       this.setState({ audioList: audioList });
     });
 
-    dispatcher.on(Event.UNSHIFT_AUDIO, (data) => {
+    dispatcher.on(Event.UNSHIFT_AUDIO, data => {
       var audioList = this.state.audioList;
       audioList.unshift(data);
+      this.setState({ audioList: audioList });
+    });
+
+    dispatcher.on(Event.INSERT_AUDIO, data => {
+      var audioList = this.state.audioList;
+      for (var i = 0; i < audioList.length; i++) {
+        if (audioList[i].key === data.prevKey) break;
+      }
+      audioList.splice(i, 0, {
+        key: data.key,
+        timeTotal: data.timeTotal,
+        url: data.url
+      });
       this.setState({ audioList: audioList });
     });
 
