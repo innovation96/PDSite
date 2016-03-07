@@ -117,7 +117,7 @@ const TalkPage = React.createClass({
           </div>
         </div>
       </div>
-      <ReplyList talkId={this.props.params.id} />
+      <ReplyList ids={talk.replies} from="talk" />
     </div>
     );
   },

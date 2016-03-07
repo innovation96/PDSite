@@ -16,14 +16,11 @@ const ReplyList = React.createClass({
     };
   },
 
-  componentDidMount() {
-    $.ajax({
-      url: settings.apiBase + 'talks/' + this.props.talkId + '/replies',
-      dataType: 'json',
-      success: this.didFetchReplies,
-      error: this.didFailFetchingReplies
-    });
+  componentWillMount() {
+    this.fetchReplies(this.props);
+  },
 
+  componentDidMount() {
     dispatcher.on(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
     dispatcher.on(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
     dispatcher.on(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
@@ -35,6 +32,10 @@ const ReplyList = React.createClass({
     dispatcher.removeListener(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
   },
 
+  componentWillReceiveProps(nextProps) {
+    this.fetchReplies(nextProps);
+  },
+
   render() {
     return (
     <div>
@@ -43,9 +44,19 @@ const ReplyList = React.createClass({
     );
   },
 
-  didFetchReplies: function(data) {
-    // TODO: Nested replies and user data
+  fetchReplies(props) {
+    if (props.ids.length > 0) {
+      $.ajax({
+        url: settings.apiBase + 'replies',
+        data: 'populate=creator&ids=' + props.ids.join(','),
+        dataType: 'json',
+        success: this.didFetchReplies,
+        error: this.didFailFetchingReplies
+      });
+    }
+  },
 
+  didFetchReplies(data) {
     data.data.replies.forEach(reply => {
       var audio = reply.answer.aws;
       audio.isPlaying = false;
@@ -56,10 +67,13 @@ const ReplyList = React.createClass({
       });
     });
 
+    // TODO: this way causes more ajax calles to fetch
+    // nested replies. Maybe we can organize some replies
+    // data first and do another ajax call before setState?
     this.setState(data);
   },
 
-  didFailFetchingReplies: function($xhr, status, error) {
+  didFailFetchingReplies($xhr, status, error) {
     console.error(error);
   },
 

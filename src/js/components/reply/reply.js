@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import ReplyList from './replyList';
 
 const Reply = React.createClass({
   // TODO: Line 29 should also have the following markup. But it looks like the info is not a channel.
@@ -27,6 +28,7 @@ const Reply = React.createClass({
             <a href={reply.url} className="pundit-link">{reply.url}</a>*/}
           </div>
         </div>
+        <ReplyList ids={reply.replies} from="reply" />
       </div>
     </div>
     );
