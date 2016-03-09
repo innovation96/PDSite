@@ -16,24 +16,18 @@ const ReplyList = React.createClass({
     };
   },
 
-  componentWillMount() {
-    this.fetchReplies(this.props, true);
-  },
-
   componentDidMount() {
     dispatcher.on(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
     dispatcher.on(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
     dispatcher.on(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
+
+    this.fetchReplies();
   },
 
   componentWillUnmount() {
     dispatcher.removeListener(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
     dispatcher.removeListener(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
     dispatcher.removeListener(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
-  },
-
-  componentWillReceiveProps(nextProps) {
-    this.fetchReplies(nextProps);
   },
 
   render() {
@@ -44,19 +38,15 @@ const ReplyList = React.createClass({
     );
   },
 
-  fetchReplies(props, isForce) {
-    if (props.ids.length > 0) {
-      // When play/pause UI state update triggers, we don't want
-      // to redo ajax call. Check the length for sure.
-      if (isForce || props.ids.length !== this.props.ids.length) {
-        $.ajax({
-          url: settings.apiBase + 'replies',
-          data: 'populate=creator&ids=' + props.ids.join(','),
-          dataType: 'json',
-          success: this.didFetchReplies,
-          error: this.didFailFetchingReplies
-        });
-      }
+  fetchReplies() {
+    if (this.props.ids.length > 0) {
+      $.ajax({
+        url: settings.apiBase + 'replies',
+        data: 'populate=creator&ids=' + this.props.ids.join(','),
+        dataType: 'json',
+        success: this.didFetchReplies,
+        error: this.didFailFetchingReplies
+      });
     }
   },
 

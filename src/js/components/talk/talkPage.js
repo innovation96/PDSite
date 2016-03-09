@@ -82,6 +82,11 @@ const TalkPage = React.createClass({
       );
     }
 
+    var replyList = null;
+    if (talk.replies.length > 0) {
+      replyList = <ReplyList ids={talk.replies} from="talk" prevAudioKey={talk.audio.key} />;
+    }
+
     var playPauseBtnClass = talk.audio.isPlaying ? 'pause-button' : 'play-button';
     var playPauseBtnText = talk.audio.isPlaying ? 'Pause' : 'Play';
 
@@ -117,7 +122,7 @@ const TalkPage = React.createClass({
           </div>
         </div>
       </div>
-      <ReplyList ids={talk.replies} from="talk" prevAudioKey={talk.audio.key} />
+      {replyList}
     </div>
     );
   },
