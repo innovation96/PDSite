@@ -51,6 +51,13 @@ const ReplyList = React.createClass({
     if (this.props.from === 'talk') {
       this.fetchReplies();
     }
+    else {
+      this.setState({
+        data: {
+          replies: JSON.parse(JSON.stringify(this.props.replies))
+        }
+      });
+    }
   },
 
   componentWillUnmount() {
@@ -60,13 +67,7 @@ const ReplyList = React.createClass({
   },
 
   render() {
-    var replies = null;
-    if (this.props.from === 'talk') {
-      replies = this.state.data.replies;
-    }
-    else {
-      replies = this.props.replies;
-    }
+    var replies = this.state.data.replies;
 
     return (
     <div>
