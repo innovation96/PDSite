@@ -15,14 +15,15 @@ const Reply = React.createClass({
         <Wavesurfer
           audioFile={reply.answer.aws.url}
           pos={0}
-          onPosChange={this.handlePosChange}
           playing={reply.answer.aws.isPlaying}
+          onReady={this.onAudioReady}
           options={{
             height: 40,
             barWidth: 2,
             cursorWidth: 0,
             progressColor: '#6007B5',
-            waveColor: '#E5E5EA'
+            waveColor: '#E5E5EA',
+            interact: false
           }} />
       );
     }
@@ -59,6 +60,10 @@ const Reply = React.createClass({
       </div>
     </div>
     );
+  },
+
+  onAudioReady(e) {
+    e.wavesurfer.setVolume(0);
   }
 });
 

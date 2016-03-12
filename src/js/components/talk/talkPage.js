@@ -77,14 +77,15 @@ const TalkPage = React.createClass({
         <Wavesurfer
           audioFile={talk.audio.url}
           pos={0}
-          onPosChange={this.handlePosChange}
           playing={talk.audio.isPlaying}
+          onReady={this.onAudioReady}
           options={{
             height: 40,
             barWidth: 2,
             cursorWidth: 0,
             progressColor: '#6007B5',
-            waveColor: '#E5E5EA'
+            waveColor: '#E5E5EA',
+            interact: false
           }} />
       );
     }
@@ -191,8 +192,8 @@ const TalkPage = React.createClass({
 
   },
 
-  handlePosChange() {
-
+  onAudioReady(e) {
+    e.wavesurfer.setVolume(0);
   }
 });
 
