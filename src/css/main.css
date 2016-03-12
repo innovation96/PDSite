@@ -485,7 +485,7 @@ input::-webkit-input-placeholder {
 /*~~ Pundit ~~*/
 .pundit-talk-header {
   text-align: center;
-  height: 110px;
+  height: 94px;
   background-color: #08A1BF;
 }
 
@@ -539,7 +539,18 @@ input::-webkit-input-placeholder {
 }
 
 .pundit-reply {
-  margin: 50px auto;
+  margin: 0 auto;
+  padding-bottom: 5px;
+}
+
+.pundit-sub-reply {
+  clear: both;
+  padding-bottom: 0;
+  padding-top: 20px;
+}
+
+.pundit-sub-reply .pundit-wrapper {
+  margin: 0;
 }
 
 .pundit-wrapper {

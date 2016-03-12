@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import Wavesurfer from 'react-wavesurfer';
 import ReplyList from './replyList';
 
 const Reply = React.createClass({
@@ -7,11 +8,23 @@ const Reply = React.createClass({
   // → <Link to={'/channels/' + this.props.talk.channels[0]._id} className="tag">#{this.props.talk.channels[0].name}</Link>
   render() {
     var reply = this.props.reply;
+
+    var wavesurfer = null;
+    if (reply.answer.aws.url) {
+      wavesurfer = (
+        <Wavesurfer
+          audioFile={reply.answer.aws.url}
+          pos={0}
+          onPosChange={this.handlePosChange}
+          playing={false} />
+      );
+    }
+
     var playPauseBtnClass = reply.answer.aws.isPlaying ? 'pause-button' : 'play-button';
     var playPauseBtnText = reply.answer.aws.isPlaying ? 'Pause' : 'Play';
 
     return (
-    <div className="page-body pundit-reply">
+    <div className="page-body pundit-reply pundit-sub-reply">
       <Link className="pundit-avatar avatar-medium" to={'/users/' + reply.creator._id}><img src={reply.creator.profilePicture} width="60" height="60" /></Link>
       <div className="pundit-wrapper">
         <div className="pundit-details">
@@ -20,7 +33,7 @@ const Reply = React.createClass({
           </div>
           <div className="pundit-audio">
             <button className={'play-pause-button ' + playPauseBtnClass} data-audio-key={reply.answer.aws.key} onClick={this.props.playPauseAudio}>{playPauseBtnText}</button>
-            {/*<div className="audio-wave">{wavesurfer}</div>*/}
+            <div className="audio-wave">{wavesurfer}</div>
           </div>
           <div className="pundit-subject">
             <p>{reply.text}</p>

@@ -98,9 +98,9 @@ const TalkPage = React.createClass({
             <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
             <p>{talk.likers.length} Likes, {talk.replies.length} Posts</p>
           </div>
-          <div className="pundit-header-bar">
+          {/* <div className="pundit-header-bar">
             <img src="images/talk_actions_container.png" height="52" width="158" />
-          </div>
+          </div> */}
         </div>
         <div className="page-body pundit-reply">
           <Link className="pundit-avatar avatar-medium" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="60" height="60" /></Link>
@@ -111,7 +111,7 @@ const TalkPage = React.createClass({
               </div>
               <div className="pundit-audio">
                 <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
-                {/*<div className="audio-wave">{wavesurfer}</div>*/}
+                <div className="audio-wave">{wavesurfer}</div>
               </div>
               <div className="pundit-subject">
                 <p>{talk.title}</p>
