@@ -10,6 +10,8 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var uglify = require('gulp-uglify');
 var buffer = require('vinyl-buffer');
+var rimraf = require('rimraf');
+var runSequence = require('run-sequence');
 
 var config = {
   port: 7780,
@@ -30,6 +32,10 @@ var config = {
     mainJs: './src/js/main.js'
   }
 };
+
+gulp.task('clean', function(cb) {
+  rimraf('dist', cb);
+});
 
 gulp.task('connect', function() {
   connect.server({
@@ -98,5 +104,9 @@ gulp.task('watch', function() {
   gulp.watch(config.paths.js, ['js', 'lint']);
 });
 
-gulp.task('build', ['html', 'js', 'css', 'images', 'lint']);
-gulp.task('default', ['build', 'connect', 'watch']);
+gulp.task('build-dev', ['html', 'js', 'css', 'images', 'lint']);
+gulp.task('build', function(cb) {
+  process.env.NODE_ENV = 'production';
+  runSequence('clean', ['html', 'js', 'css', 'images'], cb);
+});
+gulp.task('default', ['build-dev', 'connect', 'watch']);

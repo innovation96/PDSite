@@ -41,6 +41,8 @@
     "gulp-sourcemaps": "~1.6.0",
     "gulp-uglify": "~1.5.1",
     "gulp-util": "~3.0.7",
+    "rimraf": "~2.5.2",
+    "run-sequence": "~1.1.5",
     "vinyl-buffer": "~1.0.0",
     "vinyl-source-stream": "~1.1.0",
     "webpack": "~1.12.12",
