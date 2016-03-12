@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import {Howl} from 'howler';
 import Event from '../../events';
 import dispatcher from '../../dispatcher';
@@ -43,7 +44,9 @@ const Player = React.createClass({
       audioList.splice(i, 0, {
         key: data.key,
         timeTotal: data.timeTotal,
-        url: data.url
+        url: data.url,
+        user: data.user,
+        channels: data.channels
       });
       this.setState({ audioList: audioList });
     });
@@ -76,10 +79,31 @@ const Player = React.createClass({
     var playPauseBtnText = this.state.isPlaying ? 'Pause' : 'Play';
     var prevBtnDisabledClass = this.state.audioIndex === 0 ? 'disabled' : '';
     var nextBtnDisabledClass = this.state.audioIndex + 1 === this.state.audioList.length ? 'disabled' : '';
+    var playerComponent = null;
 
     if (this.state.audioIndex === -1) {
       prevBtnDisabledClass = 'disabled';
       nextBtnDisabledClass = 'disabled';
+    }
+    else {
+      let audio = this.state.audioList[this.state.audioIndex];
+      let channelJsx = null;
+      if (audio.channels.length) {
+        channelJsx = (
+          <span>→ <a href="#" className="tag">#{audio.channels[0].name}</a></span>
+        );
+      }
+
+      playerComponent = (
+        <div className="player-component track-info">
+          <Link to={'/users/' + audio.user._id} className="avatar-small-tiny">
+            <img src={audio.user.profilePicture} width="35" height="35" />
+          </Link>
+          <div className="player-tag">
+            <Link to={'/users/' + audio.user._id} className="username">{audio.user.name}</Link> {channelJsx}
+          </div>
+        </div>
+      );
     }
 
     return (
@@ -97,14 +121,7 @@ const Player = React.createClass({
             <div className="progress-bar" style={{width: this.state.timeTotal === 0 ? '0' : Math.round(this.state.timeElapsed/this.state.timeTotal * 100) + '%'}}></div>
           </div>
         </div>
-        <div className="player-component track-info">
-          <a href="#" className="avatar-small-tiny">
-            <img src="/images/jwt_avatar.jpg" width="35" height="35" />
-          </a>
-          <div className="player-tag">
-            <a href="#" className="username">billyshawz</a> → <a href="#" className="tag">#politics</a>
-          </div>
-        </div>
+        {playerComponent}
       </div>
     </div>
     );

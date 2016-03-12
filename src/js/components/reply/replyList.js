@@ -100,7 +100,13 @@ const ReplyList = React.createClass({
       var dispatchData = {
         key: audio.key,
         timeTotal: audio.len,
-        url: audio.url
+        url: audio.url,
+        user: {
+          _id: reply.creator._id,
+          profilePicture: reply.creator.profilePicture,
+          name: reply.creator.name
+        },
+        channels: this.props.channels
       };
 
       // TODO: We don't fetch data when from==='reply' anymore, this if block

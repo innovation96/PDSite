@@ -93,7 +93,7 @@ const TalkPage = React.createClass({
 
     var replyList = null;
     if (talk.replies.length > 0) {
-      replyList = <ReplyList ids={talk.replies} from="talk" prevAudioKey={talk.audio.key} />;
+      replyList = <ReplyList ids={talk.replies} from="talk" channels={talk.channels} prevAudioKey={talk.audio.key} />;
     }
 
     var playPauseBtnClass = talk.audio.isPlaying ? 'pause-button' : 'play-button';
@@ -156,7 +156,13 @@ const TalkPage = React.createClass({
     dispatcher.emit(Event.UNSHIFT_AUDIO, {
       key: data.talk.audioIntroduction.key,
       timeTotal: data.talk.audioIntroduction.len,
-      url: data.talk.audioIntroduction.url
+      url: data.talk.audioIntroduction.url,
+      user: {
+        _id: data.talk.user._id,
+        profilePicture: data.talk.user.profilePicture,
+        name: data.talk.user.name
+      },
+      channels: data.talk.channels
     });
   },
 
