@@ -3,9 +3,6 @@ import {Howl} from 'howler';
 import Event from '../../events';
 import dispatcher from '../../dispatcher';
 
-var _sound = null;
-var _playingTimeTimer = null;
-
 function MMSSFromSeconds(totalSec) {
   totalSec = Math.round(totalSec);
   var minutes = parseInt(totalSec / 60, 10) % 60;
@@ -120,23 +117,29 @@ const Player = React.createClass({
       return;
     }
 
+    var sound = this._sound;
     if (isPlaying) {
-      if (_sound) _sound.play();
+      if (sound) sound.play();
       this.syncTime();
     }
     else {
-      if (_sound) _sound.pause();
+      // Have no idea why howler can't catch the correct id
+      // to clear onendTimeout on pause. I just take a glance of the
+      // howler.js source code and come up with this solution.
+      if (sound) {
+        sound.pause(this._sound._audioNode[0].id);
+      }
       this.desyncTime();
     }
   },
 
   playAudioAtIndex(index) {
-    if (_sound) {
-      _sound.stop();
-      _sound.unload();
+    if (this._sound) {
+      this._sound.stop();
+      this._sound.unload();
     }
 
-    _sound = new Howl({
+    this._sound = new Howl({
       urls: [this.state.audioList[index].url],
       autoplay: true,
       onplay: () => {
@@ -147,17 +150,12 @@ const Player = React.createClass({
         });
       },
       onpause: () => {
-        console.log(index, 'paused');
-
         dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
           key: this.state.audioList[index].key,
           isPlaying: false
         });
       },
       onend: () => {
-        // TODO: looks like onend disregards pause. Maybe it's due to the cross domain issue?
-        console.log(index, 'ended');
-
         this.desyncTime();
         dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
           key: this.state.audioList[index].key,
@@ -202,20 +200,20 @@ const Player = React.createClass({
   },
 
   syncTime() {
-    if (_sound.pos()) {
+    if (this._sound.pos()) {
       this.setState({
-        timeElapsed: _sound.pos(),
-        timeRemaining: this.state.audioList[this.state.audioIndex].timeTotal - _sound.pos()
+        timeElapsed: this._sound.pos(),
+        timeRemaining: this.state.audioList[this.state.audioIndex].timeTotal - this._sound.pos()
       });
     }
 
-    _playingTimeTimer = setTimeout(() => {
+    this._playingTimeTimer = setTimeout(() => {
       this.syncTime();
     }, 1000);
   },
 
   desyncTime() {
-    clearTimeout(_playingTimeTimer);
+    clearTimeout(this._playingTimeTimer);
   }
 });
 
