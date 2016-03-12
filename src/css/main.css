@@ -494,6 +494,8 @@ input::-webkit-input-placeholder {
   text-align: center;
   height: 94px;
   background-color: #08A1BF;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 
 .pundit-header-tag {
@@ -547,7 +549,7 @@ input::-webkit-input-placeholder {
 
 .pundit-reply {
   margin: 0 auto;
-  padding-bottom: 5px;
+  padding-bottom: 0;
 }
 
 .pundit-sub-reply {
@@ -1338,3 +1340,55 @@ input::-webkit-input-placeholder {
   height: 30px;
 }
 /*~~ Register to get app form ends ~~*/
+
+/*~~ Temporary ~~*/
+/* Top bar */
+.login-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #5B6C72;
+  z-index: 999;
+}
+
+.nav-social {
+  width: 130px;
+  margin-top: 14px;
+  float: right;
+}
+
+.nav-social a {
+  float: right;
+}
+
+.nav-social a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.nav-logo img {
+  height: 44px;
+  margin-left: 30px;
+  margin-top: 7px;
+}
+
+.nav-login {
+  float: right;
+  width: 136px;
+  line-height: 40px;
+  border:none;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+  margin-right: 30px;
+  margin-top: 10px;
+}
+/* Top bar */
