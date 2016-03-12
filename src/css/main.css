@@ -392,6 +392,12 @@ input::-webkit-input-placeholder {
   width: 40px;
   height: 27px;
 }
+
+.fixed-player .player-button.disabled {
+  cursor: default;
+  opacity: 0.2;
+}
+
 .fixed-player .player-button:before {
   content: "";
   display: inline-block;

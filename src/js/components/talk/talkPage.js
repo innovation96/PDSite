@@ -53,13 +53,13 @@ const TalkPage = React.createClass({
 
     dispatcher.on(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
     dispatcher.on(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
-    dispatcher.on(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
+    // dispatcher.on(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
   },
 
   componentWillUnmount() {
     dispatcher.removeListener(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
     dispatcher.removeListener(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
-    dispatcher.removeListener(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
+    // dispatcher.removeListener(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
   },
 
   render() {
@@ -75,6 +75,7 @@ const TalkPage = React.createClass({
     if (talk.audio.url) {
       wavesurfer = (
         <Wavesurfer
+          ref={(ref) => this.wavesurfer = ref}
           audioFile={talk.audio.url}
           pos={0}
           playing={talk.audio.isPlaying}
@@ -176,6 +177,10 @@ const TalkPage = React.createClass({
       let audio = talk.audio;
       audio.isPlaying = false;
       this.setState({ talk: talk });
+      if (this.wavesurfer.state.pos > 0) {
+        this.wavesurfer._wavesurfer.pause();
+        this.wavesurfer._wavesurfer.seekTo(0);
+      }
     }
   },
 

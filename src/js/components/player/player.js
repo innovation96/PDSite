@@ -77,6 +77,11 @@ const Player = React.createClass({
     var prevBtnDisabledClass = this.state.audioIndex === 0 ? 'disabled' : '';
     var nextBtnDisabledClass = this.state.audioIndex + 1 === this.state.audioList.length ? 'disabled' : '';
 
+    if (this.state.audioIndex === -1) {
+      prevBtnDisabledClass = 'disabled';
+      nextBtnDisabledClass = 'disabled';
+    }
+
     return (
     <div className="fixed-player clearfix">
       <div className="player-wrapper">
@@ -110,7 +115,6 @@ const Player = React.createClass({
     if (this.state.audioList.length === 0) return;
 
     var isPlaying = !this.state.isPlaying;
-    this.setState({ isPlaying: isPlaying });
 
     if (this.state.audioIndex === -1) {
       this.playAudioAtIndex(0);
@@ -148,12 +152,14 @@ const Player = React.createClass({
           key: this.state.audioList[index].key,
           isPlaying: true
         });
+        this.setState({ isPlaying: true });
       },
       onpause: () => {
         dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
           key: this.state.audioList[index].key,
           isPlaying: false
         });
+        this.setState({ isPlaying: false });
       },
       onend: () => {
         this.desyncTime();
@@ -165,6 +171,8 @@ const Player = React.createClass({
         if (++index < this.state.audioList.length) {
           this.playAudioAtIndex(index);
         }
+
+        this.setState({ isPlaying: false });
       }
     });
 
@@ -194,7 +202,7 @@ const Player = React.createClass({
 
     var index = this.state.audioIndex;
     var length = this.state.audioList.length;
-    if (++index < length) {
+    if (index > -1 && ++index < length) {
       this.playAudioAtIndex(index);
     }
   },

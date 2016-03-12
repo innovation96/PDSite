@@ -46,7 +46,7 @@ const ReplyList = React.createClass({
   componentDidMount() {
     dispatcher.on(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
     dispatcher.on(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
-    dispatcher.on(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
+    // dispatcher.on(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
 
     if (this.props.from === 'talk') {
       this.fetchReplies();
@@ -63,7 +63,7 @@ const ReplyList = React.createClass({
   componentWillUnmount() {
     dispatcher.removeListener(Event.PLAYER_AUDIO_TRACK_CHANGE, this.syncAudioTrack);
     dispatcher.removeListener(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
-    dispatcher.removeListener(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
+    // dispatcher.removeListener(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
   },
 
   render() {
@@ -144,6 +144,7 @@ const ReplyList = React.createClass({
     d.replies.forEach(reply => {
       if (reply.answer.aws.key !== data.key) {
         reply.answer.aws.isPlaying = false;
+        reply.answer.aws.shouldReset = true;
       }
     });
     this.setState({ data: d });
@@ -154,6 +155,7 @@ const ReplyList = React.createClass({
     d.replies.every(reply => {
       if (reply.answer.aws.key === data.key) {
         reply.answer.aws.isPlaying = data.isPlaying;
+        reply.answer.aws.shouldReset = false;
         return false;
       }
 

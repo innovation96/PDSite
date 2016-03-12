@@ -13,6 +13,7 @@ const Reply = React.createClass({
     if (reply.answer.aws.url) {
       wavesurfer = (
         <Wavesurfer
+          ref={(ref) => this.wavesurfer = ref}
           audioFile={reply.answer.aws.url}
           pos={0}
           playing={reply.answer.aws.isPlaying}
@@ -26,6 +27,16 @@ const Reply = React.createClass({
             interact: false
           }} />
       );
+    }
+
+    if (reply.answer.aws.shouldReset && this.wavesurfer.state.pos > 0) {
+      // It is bad to update state inside render. But the pos prop of wavesurfer
+      // doesn't work. So I have to do it here. And in order to make it run after
+      // render method, use setTimeout 0 here.
+      setTimeout(() => {
+        this.wavesurfer._wavesurfer.pause();
+        this.wavesurfer._wavesurfer.seekTo(0);
+      }, 0);
     }
 
     var replyList = null;
