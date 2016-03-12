@@ -16,7 +16,14 @@ const Reply = React.createClass({
           audioFile={reply.answer.aws.url}
           pos={0}
           onPosChange={this.handlePosChange}
-          playing={false} />
+          playing={reply.answer.aws.isPlaying}
+          options={{
+            height: 40,
+            barWidth: 2,
+            cursorWidth: 0,
+            progressColor: '#6007B5',
+            waveColor: '#E5E5EA'
+          }} />
       );
     }
 

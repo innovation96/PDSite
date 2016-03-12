@@ -78,7 +78,14 @@ const TalkPage = React.createClass({
           audioFile={talk.audio.url}
           pos={0}
           onPosChange={this.handlePosChange}
-          playing={false} />
+          playing={talk.audio.isPlaying}
+          options={{
+            height: 40,
+            barWidth: 2,
+            cursorWidth: 0,
+            progressColor: '#6007B5',
+            waveColor: '#E5E5EA'
+          }} />
       );
     }
 

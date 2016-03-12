@@ -349,6 +349,7 @@ input::-webkit-input-placeholder {
 /*~~ Global Player ~~*/
 .fixed-player {
   position: fixed;
+  z-index: 10000;
   left: 0;
   right: 0;
   bottom: 0;
@@ -654,10 +655,7 @@ input::-webkit-input-placeholder {
 .pundit-details .pundit-audio .audio-wave {
   float: left;
   width: 400px;
-  height: 21px;
-  margin-top: 10px;
-  /* TODO just a placeholder here for now */
-  background: url(/images/wave-placeholder.png) no-repeat;
+  height: 40px;
 }
 
 .pundit-details .pundit-preview {
