@@ -5,6 +5,33 @@ import Event from '../../events';
 import dispatcher from '../../dispatcher';
 import Reply from './reply';
 
+function idIndexAtSource(id, source) {
+  var index = -1;
+
+  source.every((item, i) => {
+    if (item._id === id) {
+      index = i;
+      return false;
+    }
+    return true;
+  });
+
+  return index;
+}
+
+function alterRepliesStructure(target, source) {
+  var id = '';
+  var index = -1;
+  for (var i = 0; i < target.replies.length; i++) {
+    id = target.replies[i];
+    index = idIndexAtSource(id, source);
+    if (~index) {
+      target.replies.splice(i, 1, source.splice(index, 1)[0]);
+      alterRepliesStructure(target.replies[i], source);
+    }
+  }
+}
+
 const ReplyList = React.createClass({
   getInitialState() {
     return {
@@ -21,7 +48,9 @@ const ReplyList = React.createClass({
     dispatcher.on(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, this.syncAudioPlayingState);
     dispatcher.on(Event.PLAYER_AUDIO_PROGRESS_CHANGE, this.syncAudioProgress);
 
-    this.fetchReplies();
+    if (this.props.from === 'talk') {
+      this.fetchReplies();
+    }
   },
 
   componentWillUnmount() {
@@ -31,27 +60,39 @@ const ReplyList = React.createClass({
   },
 
   render() {
+    var replies = null;
+    if (this.props.from === 'talk') {
+      replies = this.state.data.replies;
+    }
+    else {
+      replies = this.props.replies;
+    }
+
     return (
     <div>
-      {this.state.data.replies.map(reply => (<Reply key={reply._id} reply={reply} playPauseAudio={this.playPauseAudio} />))}
+      {replies.map(reply => (<Reply key={reply._id} reply={reply} playPauseAudio={this.playPauseAudio} />))}
     </div>
     );
   },
 
   fetchReplies() {
-    if (this.props.ids.length > 0) {
-      $.ajax({
-        url: settings.apiBase + 'replies',
-        data: 'populate=creator&ids=' + this.props.ids.join(','),
-        dataType: 'json',
-        success: this.didFetchReplies,
-        error: this.didFailFetchingReplies
-      });
-    }
+    $.ajax({
+      url: settings.apiBase + 'replies',
+
+      // TODO: for now just limit to ids.length for simplicity.
+      // need to do pagination in the future.
+      data: 'populate=creator&limit=' + this.props.ids.length + '&ids=' + this.props.ids.join(','),
+
+      dataType: 'json',
+      success: this.didFetchReplies,
+      error: this.didFailFetchingReplies
+    });
   },
 
   didFetchReplies(data) {
-    data.data.replies.forEach((reply, i) => {
+    var replies = data.data.replies;
+
+    replies.forEach((reply, i) => {
       var audio = reply.answer.aws;
       audio.isPlaying = false;
 
@@ -61,9 +102,13 @@ const ReplyList = React.createClass({
         url: audio.url
       };
 
+      // TODO: We don't fetch data when from==='reply' anymore, this if block
+      // may be safely removed sometime later. For now I just want to keep it
+      // in case we update data fetching login again. Also I assume that
+      // nested replies are returned in sequence.
       if (this.props.from === 'reply') {
         if (i === 0) dispatchData.prevKey = this.props.prevAudioKey;
-        else dispatchData.prevKey = data.data.replies[i - 1].answer.aws.key;
+        else dispatchData.prevKey = replies[i - 1].answer.aws.key;
         dispatcher.emit(Event.INSERT_AUDIO, dispatchData);
       }
       else {
@@ -72,9 +117,14 @@ const ReplyList = React.createClass({
 
     });
 
-    // TODO: this way causes more ajax calles to fetch
-    // nested replies. Maybe we can organize some replies
-    // data first and do another ajax call before setState?
+    for (let i = 0; i < replies.length; i++) {
+      let reply = replies[i];
+
+      if (reply.replies.length) {
+        alterRepliesStructure(reply, replies);
+      }
+    }
+
     this.setState(data);
   },
 

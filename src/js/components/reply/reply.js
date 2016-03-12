@@ -20,6 +20,13 @@ const Reply = React.createClass({
       );
     }
 
+    var replyList = null;
+    if (reply.replies.length) {
+      replyList = (
+        <ReplyList ids={[]} replies={reply.replies} from="reply" prevAudioKey={reply.answer.aws.key} />
+      );
+    }
+
     var playPauseBtnClass = reply.answer.aws.isPlaying ? 'pause-button' : 'play-button';
     var playPauseBtnText = reply.answer.aws.isPlaying ? 'Pause' : 'Play';
 
@@ -41,7 +48,7 @@ const Reply = React.createClass({
             <a href={reply.url} className="pundit-link">{reply.url}</a>*/}
           </div>
         </div>
-        <ReplyList ids={reply.replies} from="reply" prevAudioKey={reply.answer.aws.key} />
+        {replyList}
       </div>
     </div>
     );
