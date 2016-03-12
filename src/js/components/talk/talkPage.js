@@ -191,11 +191,19 @@ const TalkPage = React.createClass({
   },
 
   syncAudioPlayingState(data) {
+    var talk = this.state.talk;
+    var audio = talk.audio;
     if (data.key === this.state.talk.audio.key) {
-      let talk = this.state.talk;
-      let audio = talk.audio;
       audio.isPlaying = data.isPlaying;
       this.setState({ talk: talk });
+    }
+    else {
+      audio.isPlaying = false;
+      this.setState({ talk: talk });
+      if (this.wavesurfer.state.pos > 0) {
+        this.wavesurfer._wavesurfer.pause();
+        this.wavesurfer._wavesurfer.seekTo(0);
+      }
     }
   },
 

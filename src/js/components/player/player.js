@@ -157,26 +157,28 @@ const Player = React.createClass({
   playAudioAtIndex(index) {
     if (this._sound) {
       this._sound.stop();
-      this._sound.unload();
     }
+
+    var self = this;
 
     this._sound = new Howl({
       urls: [this.state.audioList[index].url],
       autoplay: true,
-      onplay: () => {
-        this.syncTime();
-        dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
-          key: this.state.audioList[index].key,
-          isPlaying: true
-        });
-        this.setState({ isPlaying: true });
+      onplay: function() {
+        if (index === self.state.audioIndex) {
+          self.syncTime();
+          dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
+            key: self.state.audioList[index].key,
+            isPlaying: true
+          });
+          self.setState({ isPlaying: true });
+        }
+        else {
+          this.stop();
+        }
       },
       onpause: () => {
-        dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
-          key: this.state.audioList[index].key,
-          isPlaying: false
-        });
-        this.setState({ isPlaying: false });
+        this.emitPauseEventForIndex(index);
       },
       onend: () => {
         this.desyncTime();
@@ -200,15 +202,16 @@ const Player = React.createClass({
       timeTotal: this.state.audioList[index].timeTotal
     });
 
-    dispatcher.emit(Event.PLAYER_AUDIO_TRACK_CHANGE, {
-      key: this.state.audioList[index].key
-    });
+    // dispatcher.emit(Event.PLAYER_AUDIO_TRACK_CHANGE, {
+    //   key: this.state.audioList[index].key
+    // });
   },
 
   playPrevAudio(e) {
     e.preventDefault();
 
     var index = this.state.audioIndex;
+    this.emitPauseEventForIndex(index);
     if (index > 0) {
       this.playAudioAtIndex(--index);
     }
@@ -219,9 +222,18 @@ const Player = React.createClass({
 
     var index = this.state.audioIndex;
     var length = this.state.audioList.length;
+    this.emitPauseEventForIndex(index);
     if (index > -1 && ++index < length) {
       this.playAudioAtIndex(index);
     }
+  },
+
+  emitPauseEventForIndex(index) {
+    dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
+      key: this.state.audioList[index].key,
+      isPlaying: false
+    });
+    this.setState({ isPlaying: false });
   },
 
   syncTime() {

@@ -158,14 +158,15 @@ const ReplyList = React.createClass({
 
   syncAudioPlayingState(data) {
     var d = this.state.data;
-    d.replies.every(reply => {
+    d.replies.forEach(reply => {
       if (reply.answer.aws.key === data.key) {
         reply.answer.aws.isPlaying = data.isPlaying;
         reply.answer.aws.shouldReset = false;
-        return false;
       }
-
-      return true;
+      else {
+        reply.answer.aws.isPlaying = false;
+        reply.answer.aws.shouldReset = true;
+      }
     });
     this.setState({ data: d });
   },
