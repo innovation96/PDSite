@@ -67,7 +67,6 @@ const Player = React.createClass({
           this.playPauseAudio();
         }
         else {
-          this.setState({ isPlaying: true });
           this.playAudioAtIndex(index);
         }
       }
@@ -118,7 +117,7 @@ const Player = React.createClass({
           <span className="elapsed-time">{MMSSFromSeconds(this.state.timeElapsed)}</span>
           <span className="remaining-time">{MMSSFromSeconds(this.state.timeRemaining)}</span>
           <div className="progress-bar-wrapper">
-            <div className="progress-bar" style={{width: this.state.timeTotal === 0 ? '0' : Math.round(this.state.timeElapsed/this.state.timeTotal * 100) + '%'}}></div>
+            <div className="progress-bar" style={{width: this.state.timeTotal === 0 ? '0' : this.state.timeElapsed/this.state.timeTotal*100 + '%'}}></div>
           </div>
         </div>
         {playerComponent}
@@ -156,7 +155,7 @@ const Player = React.createClass({
 
   playAudioAtIndex(index) {
     if (this._sound) {
-      this._sound.stop();
+      this._sound.stop(this._sound._audioNode[0].id);
     }
 
     var self = this;
@@ -244,13 +243,13 @@ const Player = React.createClass({
       });
     }
 
-    this._playingTimeTimer = setTimeout(() => {
+    this._playingTimeTimer = requestAnimationFrame(() => {
       this.syncTime();
-    }, 1000);
+    });
   },
 
   desyncTime() {
-    clearTimeout(this._playingTimeTimer);
+    cancelAnimationFrame(this._playingTimeTimer);
   }
 });
 
