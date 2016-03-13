@@ -25,7 +25,7 @@ const TalkList = React.createClass({
 
   render() {
     return (
-    <div>
+    <div className="">
       {this.state.data.talks.map(talk => (<Talk key={talk._id} talk={talk} />))}
     </div>
     );

@@ -68,9 +68,10 @@ const ReplyList = React.createClass({
 
   render() {
     var replies = this.state.data.replies;
+    var subReplyClass = this.props.from == "reply" ? "pundit-sub-reply" : null;
 
     return (
-    <div>
+    <div className={subReplyClass}>
       {replies.map(reply => (<Reply key={reply._id} reply={reply} playPauseAudio={this.playPauseAudio} />))}
     </div>
     );

@@ -58,6 +58,11 @@ body {
   font-family: 'SF UI Text', Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.4;
+  padding-bottom: 80px;
+}
+
+button {
+  outline: none;
 }
 
 a:link, a:visited {
@@ -495,7 +500,7 @@ input::-webkit-input-placeholder {
   height: 94px;
   background-color: #08A1BF;
   margin-top: 60px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .pundit-header-tag {
@@ -547,19 +552,31 @@ input::-webkit-input-placeholder {
   font-weight: normal;
 }
 
-.pundit-reply {
-  margin: 0 auto;
-  padding-bottom: 0;
-}
-
-.pundit-sub-reply {
+.pundit-sub-reply .pundit-reply {
   clear: both;
-  padding-bottom: 0;
+  padding-bottom: 10px;
   padding-top: 20px;
 }
 
 .pundit-sub-reply .pundit-wrapper {
   margin: 0;
+}
+
+.pundit-sub-reply .page-body {
+  width: 510px;
+}
+
+.pundit-sub-reply .pundit-details .pundit-audio {
+  width: 395px;
+}
+
+.pundit-sub-reply .pundit-details .pundit-audio .audio-wave {
+  width: 335px;
+}
+
+.pundit-reply {
+  margin: 0 auto;
+  padding-bottom: 0;
 }
 
 .pundit-wrapper {
@@ -652,6 +669,7 @@ input::-webkit-input-placeholder {
 .pundit-details .pundit-audio {
   overflow: hidden;
   margin: 20px 0;
+  width: 510px;
 }
 
 .pundit-details .pundit-audio .play-pause-button {
@@ -662,7 +680,7 @@ input::-webkit-input-placeholder {
 
 .pundit-details .pundit-audio .audio-wave {
   float: left;
-  width: 400px;
+  width: 450px;
   height: 40px;
 }
 

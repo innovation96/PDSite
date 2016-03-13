@@ -84,7 +84,7 @@ const TalkPage = React.createClass({
             height: 40,
             barWidth: 2,
             cursorWidth: 0,
-            progressColor: '#6007B5',
+            progressColor: '#08A1BF',
             waveColor: '#E5E5EA',
             interact: false
           }} />
@@ -119,8 +119,8 @@ const TalkPage = React.createClass({
                 <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link>
               </div>
               <div className="pundit-audio">
-                <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
                 <div className="audio-wave">{wavesurfer}</div>
+                <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
               </div>
               <div className="pundit-subject">
                 <p>{talk.title}</p>

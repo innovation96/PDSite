@@ -22,7 +22,7 @@ const Reply = React.createClass({
             height: 40,
             barWidth: 2,
             cursorWidth: 0,
-            progressColor: '#6007B5',
+            progressColor: '#08A1BF',
             waveColor: '#E5E5EA',
             interact: false
           }} />
@@ -50,7 +50,7 @@ const Reply = React.createClass({
     var playPauseBtnText = reply.answer.aws.isPlaying ? 'Pause' : 'Play';
 
     return (
-    <div className="page-body pundit-reply pundit-sub-reply">
+    <div className="page-body pundit-reply">
       <Link className="pundit-avatar avatar-medium" to={'/users/' + reply.creator._id}><img src={reply.creator.profilePicture} width="60" height="60" /></Link>
       <div className="pundit-wrapper">
         <div className="pundit-details">
@@ -58,8 +58,8 @@ const Reply = React.createClass({
             <Link to={'/users/' + reply.creator._id} className="username">{reply.creator.name}</Link>
           </div>
           <div className="pundit-audio">
-            <button className={'play-pause-button ' + playPauseBtnClass} data-audio-key={reply.answer.aws.key} onClick={this.props.playPauseAudio}>{playPauseBtnText}</button>
             <div className="audio-wave">{wavesurfer}</div>
+            <button className={'play-pause-button ' + playPauseBtnClass} data-audio-key={reply.answer.aws.key} onClick={this.props.playPauseAudio}>{playPauseBtnText}</button>
           </div>
           <div className="pundit-subject">
             <p>{reply.text}</p>
