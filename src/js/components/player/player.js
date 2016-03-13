@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import {Howl} from 'howler';
 import Event from '../../events';
 import dispatcher from '../../dispatcher';
 
@@ -95,6 +94,14 @@ const Player = React.createClass({
 
       playerComponent = (
         <div className="player-component track-info">
+          <audio
+            src={audio.url}
+            ref={(ref) => this.audio = ref}
+            autoPlay={true}
+            onEnded={this.onAudioEnd}
+            onPlaying={this.onAudioPlaying}
+            onPause={this.onAudioPause}>
+          </audio>
           <Link to={'/users/' + audio.user._id} className="avatar-small-tiny">
             <img src={audio.user.profilePicture} width="35" height="35" />
           </Link>
@@ -126,6 +133,36 @@ const Player = React.createClass({
     );
   },
 
+  onAudioEnd(e) {
+    var index = this.state.audioIndex;
+    this.desyncTime();
+    dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
+      key: this.state.audioList[index].key,
+      isPlaying: false
+    });
+
+    if (++index < this.state.audioList.length) {
+      this.playAudioAtIndex(index);
+    }
+
+    this.setState({ isPlaying: false });
+  },
+
+  onAudioPause(e) {
+    var index = this.state.audioIndex;
+    this.emitPauseEventForIndex(index);
+  },
+
+  onAudioPlaying(e) {
+    var index = this.state.audioIndex;
+    this.syncTime();
+    dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
+      key: this.state.audioList[index].key,
+      isPlaying: true
+    });
+    this.setState({ isPlaying: true });
+  },
+
   playPauseAudio(e) {
     if (e) e.preventDefault();
     if (this.state.audioList.length === 0) return;
@@ -137,63 +174,15 @@ const Player = React.createClass({
       return;
     }
 
-    var sound = this._sound;
     if (isPlaying) {
-      if (sound) sound.play();
-      this.syncTime();
+      this.audio.play();
     }
     else {
-      // Have no idea why howler can't catch the correct id
-      // to clear onendTimeout on pause. I just take a glance of the
-      // howler.js source code and come up with this solution.
-      if (sound) {
-        sound.pause(this._sound._audioNode[0].id);
-      }
-      this.desyncTime();
+      this.audio.pause();
     }
   },
 
   playAudioAtIndex(index) {
-    if (this._sound) {
-      this._sound.stop(this._sound._audioNode[0].id);
-    }
-
-    var self = this;
-
-    this._sound = new Howl({
-      urls: [this.state.audioList[index].url],
-      autoplay: true,
-      onplay: function() {
-        if (index === self.state.audioIndex) {
-          self.syncTime();
-          dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
-            key: self.state.audioList[index].key,
-            isPlaying: true
-          });
-          self.setState({ isPlaying: true });
-        }
-        else {
-          this.stop();
-        }
-      },
-      onpause: () => {
-        this.emitPauseEventForIndex(index);
-      },
-      onend: () => {
-        this.desyncTime();
-        dispatcher.emit(Event.PLAYER_AUDIO_PLAYING_STATE_CHANGE, {
-          key: this.state.audioList[index].key,
-          isPlaying: false
-        });
-
-        if (++index < this.state.audioList.length) {
-          this.playAudioAtIndex(index);
-        }
-
-        this.setState({ isPlaying: false });
-      }
-    });
-
     this.setState({
       audioIndex: index,
       timeElapsed: 0,
@@ -233,13 +222,14 @@ const Player = React.createClass({
       isPlaying: false
     });
     this.setState({ isPlaying: false });
+    this.desyncTime();
   },
 
   syncTime() {
-    if (this._sound.pos()) {
+    if (this.audio) {
       this.setState({
-        timeElapsed: this._sound.pos(),
-        timeRemaining: this.state.audioList[this.state.audioIndex].timeTotal - this._sound.pos()
+        timeElapsed: this.audio.currentTime,
+        timeRemaining: this.state.audioList[this.state.audioIndex].timeTotal - this.audio.currentTime
       });
     }
 
