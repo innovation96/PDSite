@@ -88,16 +88,17 @@ body .username {
 
 a:link, a:visited {
   color: #08A1BF;
+  outline: none;
 }
 
 a:hover, a:active, a:focus {
   /* TODO: confirm the hover color */
   color: #08A1BF;
-  outline: 0;
+  outline: none;
 }
 
 input::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #CCC;
 }
 
 .two-x-bg-icons {
@@ -877,6 +878,7 @@ hr {
 .pundit-details .subreply-count {
   width: 50px;
   margin: -17px 0 0 30px;
+  outline: none;
 }
 
 .pundit-details .pundit-actions .pundit-like-button {
@@ -942,9 +944,6 @@ hr {
   outline: none;
 }
 
-.pundit-details .pundit-actions .pundit-subreply-button:visited {
-  outline: none;
-}
 
 .pundit-details .pundit-actions .pundit-like-button:before {
   margin: 2px 0 0 0;
@@ -969,6 +968,39 @@ hr {
 .pundit-details .pundit-note-description {
   float: right;
   color: #CCCCCC;
+}
+
+.reply-input {
+  position: relative;
+  float: center;
+  margin: 10px 0 0 65px;
+}
+
+.reply-input-box {
+  width: 490px;
+  height: 60px;
+  background: #FFF;
+  border: none;
+  border-radius: 3px;
+  color: #333;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 0 0 0 20px;
+  outline: 0;
+}
+
+.send-reply-button {
+  background: #08A1BF;
+  border: none;
+  border-radius: 3px;
+  float: right;
+  color: #FFF;
+  padding: 10px 20px;
+  margin: -47px 85px 0 0;
+  display: inline;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 /*~~ Pundit Ends ~~*/

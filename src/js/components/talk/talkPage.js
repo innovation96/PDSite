@@ -86,6 +86,7 @@ const TalkPage = React.createClass({
             cursorWidth: 0,
             progressColor: '#08A1BF',
             waveColor: '#DFE0E0',
+            normalize: true,
             interact: false
           }} />
       );
@@ -116,7 +117,7 @@ const TalkPage = React.createClass({
           <div className="pundit-wrapper">
             <div className="pundit-details">
               <div className="pundit-tag">
-                <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
+                <Link to={'/users/' + talk.user._id} className="username">{talk.user.username}</Link> {channelJsx}
               </div>
               <div className="pundit-audio">
               <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
@@ -134,6 +135,10 @@ const TalkPage = React.createClass({
               </div>
             </div>
           </div>
+          <form action="#" className="reply-input">
+            <input type="text" className="reply-input-box" placeholder="Reply to"/>
+            <button className="hvr-back-pulse post-reply send-reply-button">Send</button>
+          </form>
           <hr /><h4 classname="reply-count">{talk.replies.length} Replies</h4>
         </div>
       </div>

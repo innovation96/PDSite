@@ -25,7 +25,7 @@ render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
-      <Route path="channel" component={ChannelPage} />
+      <Route path="channel/:id" component={ChannelPage} />
       <Route path="talks/:id" component={TalkPage} />
       <Route path="users/:id" component={UserPage} />
     </Route>
