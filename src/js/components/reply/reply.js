@@ -19,11 +19,11 @@ const Reply = React.createClass({
           playing={reply.answer.aws.isPlaying}
           onReady={this.onAudioReady}
           options={{
-            height: 40,
+            height: 100,
             barWidth: 2,
             cursorWidth: 0,
-            progressColor: '#6007B5',
-            waveColor: '#E5E5EA',
+            progressColor: '#08a1bf',
+            waveColor: '#DFE0E0',
             interact: false
           }} />
       );
@@ -51,7 +51,7 @@ const Reply = React.createClass({
 
     return (
     <div className="page-body pundit-reply pundit-sub-reply">
-      <Link className="pundit-avatar avatar-medium" to={'/users/' + reply.creator._id}><img src={reply.creator.profilePicture} width="60" height="60" /></Link>
+      <Link className="pundit-avatar-reply avatar-small-tiny" to={'/users/' + reply.creator._id}><img src={reply.creator.profilePicture} width="60" height="60" /></Link>
       <div className="pundit-wrapper">
         <div className="pundit-details">
           <div className="pundit-tag">
@@ -59,10 +59,15 @@ const Reply = React.createClass({
           </div>
           <div className="pundit-audio">
             <button className={'play-pause-button ' + playPauseBtnClass} data-audio-key={reply.answer.aws.key} onClick={this.props.playPauseAudio}>{playPauseBtnText}</button>
-            <div className="audio-wave">{wavesurfer}</div>
+            <div className="audio-wave-reply">{wavesurfer}</div>
+            <div className="wave-overlay"></div>
           </div>
           <div className="pundit-subject">
             <p>{reply.text}</p>
+            <div className="pundit-actions">
+              <button className="pundit-like-button"><h5 className="reply-like-count">{reply.likers.length} Likes</h5></button>
+              <button className="pundit-subreply-button"><h5 className="subreply-count">Replies</h5></button>
+            </div>
             {/*<img src="images/link_small_icon.png" width="15" height="15" />
             <a href={reply.url} className="pundit-link">{reply.url}</a>*/}
           </div>

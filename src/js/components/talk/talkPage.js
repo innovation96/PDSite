@@ -81,11 +81,11 @@ const TalkPage = React.createClass({
           playing={talk.audio.isPlaying}
           onReady={this.onAudioReady}
           options={{
-            height: 40,
+            height: 100,
             barWidth: 2,
             cursorWidth: 0,
-            progressColor: '#6007B5',
-            waveColor: '#E5E5EA',
+            progressColor: '#08A1BF',
+            waveColor: '#DFE0E0',
             interact: false
           }} />
       );
@@ -112,23 +112,29 @@ const TalkPage = React.createClass({
           </div> */}
         </div>
         <div className="page-body pundit-reply">
-          <Link className="pundit-avatar avatar-medium" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="60" height="60" /></Link>
+        <Link className="pundit-avatar avatar-medium" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="50" height="50" /></Link>
           <div className="pundit-wrapper">
             <div className="pundit-details">
               <div className="pundit-tag">
-                <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link>
+                <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
               </div>
               <div className="pundit-audio">
-                <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
+              <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
                 <div className="audio-wave">{wavesurfer}</div>
+                <div className="wave-overlay"></div>
               </div>
               <div className="pundit-subject">
-                <p>{talk.title}</p>
-                <img src="images/link_small_icon.png" width="15" height="15" />
+                <h3>{talk.title}</h3>
+                {/* <img src="images/link_small_icon.png" width="15" height="15" />
                 <a href={talk.url} className="pundit-link">{talk.url}</a>
+                Pundit links are to be incorporated with the title text. */}
+                <div className="pundit-actions">
+                  <button className="pundit-like-button"></button><h5 className="like-count">{talk.likers.length} Likes</h5>
+                </div>
               </div>
             </div>
           </div>
+          <hr /><h4 classname="reply-count">{talk.replies.length} Replies</h4>
         </div>
       </div>
       {replyList}

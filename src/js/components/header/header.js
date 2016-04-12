@@ -13,7 +13,11 @@ const Header = React.createClass({
             <input type="search" id="globalSearch" className="global-search" placeholder="Search for people and channels" />
             <button className="global-search-button">Search</button>
           </form>
-          <a className="header-avatar avatar-small" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a>
+          <a className="header-avatar app-store-badge" href="https://itunes.apple.com/us/app/pundit-talk-about-your-latest/id944061760?mt=8"><img src="images/app-store-btn.png" width="140" height="46" /></a>
+          <form action="#" className="phone-number-input">
+            <input type="text" className="phone-number" placeholder="+1 333-333-3333" />
+            <button className="hvr-back-pulse send-app-button">Send Me the App</button>
+          </form>
         </div>
       </header>
     );
