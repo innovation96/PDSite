@@ -888,6 +888,7 @@ hr {
   float:left;
   background-color: #FFF;
   border: none;
+  outline: none;
 }
 
 .pundit-details .pundit-actions .pundit-subreply-button {
@@ -898,6 +899,7 @@ hr {
   float:left;
   background-color: #FFF;
   border: none;
+  oultine: none;
 }
 
 .pundit-details .pundit-actions .pundit-subreply-button:hover,
@@ -905,6 +907,7 @@ hr {
   background: #FFF;
   border-color: #FFF;
   color: #FFF;
+  outline: none;
 }
 
 .pundit-details .pundit-actions .pundit-subreply-button:hover,
@@ -912,6 +915,7 @@ hr {
   background: #FFF;
   border-color: #FFF;
   color: #FFF;
+  outline: none;
 }
 
 .pundit-details .pundit-actions .pundit-subreply-button:before,
@@ -921,6 +925,7 @@ hr {
   position: relative;
   top: 1px;
   background: url(/images/icons.png) no-repeat;
+  outline: none;
 }
 
 .pundit-details .pundit-actions .pundit-subreply-button:before {
@@ -929,10 +934,16 @@ hr {
   height: 16px;
   background-position: -107px -63px;
   background-size: 150px 80px;
+  outline: none;
 }
 
 .pundit-details .pundit-actions .pundit-subreply-button:hover:before {
   background-position: -88px -63px;
+  outline: none;
+}
+
+.pundit-details .pundit-actions .pundit-subreply-button:visited {
+  outline: none;
 }
 
 .pundit-details .pundit-actions .pundit-like-button:before {
