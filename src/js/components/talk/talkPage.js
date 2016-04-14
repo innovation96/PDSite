@@ -81,8 +81,8 @@ const TalkPage = React.createClass({
           playing={talk.audio.isPlaying}
           onReady={this.onAudioReady}
           options={{
-            height: 100,
-            barWidth: 2,
+            height: 65,
+            barWidth: 3,
             cursorWidth: 0,
             progressColor: '#08A1BF',
             waveColor: '#DFE0E0',
@@ -101,23 +101,37 @@ const TalkPage = React.createClass({
     var playPauseBtnText = talk.audio.isPlaying ? 'Pause' : 'Play';
 
     return (
+
     <div>
       <div>
-        <div className="pundit-talk-header">
-          <div className="pundit-header-tag">
+          {/*<div className="pundit-header-tag">
             <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
             <p>{talk.likers.length} Likes, {talk.replies.length} Posts</p>
           </div>
-          {/* <div className="pundit-header-bar">
+           <div className="pundit-header-bar">
             <img src="images/talk_actions_container.png" height="52" width="158" />
           </div> */}
+
+        <div className="pundit-talk-header">
+          <h3 className="title"><span className="pundit-talk-description">Talk with <strong>{talk.user.username}</strong> about <strong>{channelJsx}</strong></span></h3>
+          <p className="pundit-point-count">15 Points</p>
+          <ul className="pundit-talk-participant-list">
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
+          </ul>
         </div>
         <div className="page-body pundit-reply">
-        <Link className="pundit-avatar avatar-medium" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="50" height="50" /></Link>
           <div className="pundit-wrapper">
             <div className="pundit-details">
+            <div className="pundit-avatar avatar-small" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="50" height="50" /></div>
               <div className="pundit-tag">
-                <Link to={'/users/' + talk.user._id} className="username">{talk.user.username}</Link> {channelJsx}
+                <div to={'/users/' + talk.user._id} className="username">{talk.user.username} {channelJsx}</div>
               </div>
               <div className="pundit-audio">
               <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
@@ -136,10 +150,10 @@ const TalkPage = React.createClass({
             </div>
           </div>
           <form action="#" className="reply-input">
-            <input type="text" className="reply-input-box" placeholder="Reply to"/>
+            <input type="text" className="reply-input-box" placeholder='{talk.user.username}' />
             <button className="hvr-back-pulse post-reply send-reply-button">Send</button>
           </form>
-          <hr /><h4 classname="reply-count">{talk.replies.length} Replies</h4>
+          <h4 classname="reply-count">{talk.replies.length} Replies</h4>
         </div>
       </div>
       {replyList}
