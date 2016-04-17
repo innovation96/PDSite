@@ -29,7 +29,8 @@ var config = {
     ],
     images: './src/images/*',
     dist: './dist',
-    mainJs: './src/js/main.js'
+    mainJs: './src/js/main.js',
+    emojis: '//twemoji.maxcdn.com/twemoji.min.js'
   }
 };
 

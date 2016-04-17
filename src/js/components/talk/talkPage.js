@@ -81,11 +81,12 @@ const TalkPage = React.createClass({
           playing={talk.audio.isPlaying}
           onReady={this.onAudioReady}
           options={{
-            height: 40,
-            barWidth: 2,
+            height: 65,
+            barWidth: 3,
             cursorWidth: 0,
-            progressColor: '#6007B5',
-            waveColor: '#E5E5EA',
+            progressColor: '#08A1BF',
+            waveColor: '#DFE0E0',
+            normalize: true,
             interact: false
           }} />
       );
@@ -100,35 +101,59 @@ const TalkPage = React.createClass({
     var playPauseBtnText = talk.audio.isPlaying ? 'Pause' : 'Play';
 
     return (
+
     <div>
       <div>
-        <div className="pundit-talk-header">
-          <div className="pundit-header-tag">
+          {/*<div className="pundit-header-tag">
             <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
             <p>{talk.likers.length} Likes, {talk.replies.length} Posts</p>
           </div>
-          {/* <div className="pundit-header-bar">
+           <div className="pundit-header-bar">
             <img src="images/talk_actions_container.png" height="52" width="158" />
           </div> */}
+
+        <div className="pundit-talk-header">
+          <h3 className="title"><span className="pundit-talk-description">Talk with <strong>{talk.user.username}</strong> about <strong>{channelJsx}</strong></span></h3>
+          <p className="pundit-point-count">15 Points</p>
+          <ul className="pundit-talk-participant-list">
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/jwt_avatar.jpg" width="40" height="40" /></a></li>
+            <li className="pundit-talk-participant"><a className="avatar-small-tiny" href="#"><img src="images/yeh_avatar.jpg" width="40" height="40" /></a></li>
+          </ul>
         </div>
         <div className="page-body pundit-reply">
-          <Link className="pundit-avatar avatar-medium" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="60" height="60" /></Link>
           <div className="pundit-wrapper">
             <div className="pundit-details">
+            <div className="pundit-avatar avatar-small" to={'/users/' + talk.user._id}><img src={talk.user.profilePicture} width="50" height="50" /></div>
               <div className="pundit-tag">
-                <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link>
+                <div to={'/users/' + talk.user._id} className="username">{talk.user.username} {channelJsx}</div>
               </div>
               <div className="pundit-audio">
-                <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
+              <button className={'play-pause-button ' + playPauseBtnClass} onClick={this.playPauseAudio}>{playPauseBtnText}</button>
                 <div className="audio-wave">{wavesurfer}</div>
+                <div className="wave-overlay"></div>
               </div>
               <div className="pundit-subject">
-                <p>{talk.title}</p>
-                <img src="images/link_small_icon.png" width="15" height="15" />
+                <h3>{talk.title}</h3>
+                {/* <img src="images/link_small_icon.png" width="15" height="15" />
                 <a href={talk.url} className="pundit-link">{talk.url}</a>
+                Pundit links are to be incorporated with the title text. */}
+                <div className="pundit-actions">
+                  <button className="pundit-like-button"></button><h5 className="like-count">{talk.likers.length} Likes</h5>
+                </div>
               </div>
             </div>
           </div>
+          <form action="#" className="reply-input">
+            <input type="text" className="reply-input-box" placeholder='{talk.user.username}' />
+            <button className="hvr-back-pulse post-reply send-reply-button">Send</button>
+          </form>
+          <h4 classname="reply-count">{talk.replies.length} Replies</h4>
         </div>
       </div>
       {replyList}

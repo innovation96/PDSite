@@ -19,6 +19,10 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: Avenir Next; src: url(/fonts/Avenir Next.ttf);
+}
+
 .hidden {
   display: none;
 }
@@ -55,22 +59,48 @@
 body {
   line-height: 1;
   background: #F7F7F7;
-  font-family: 'SF UI Text', Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-family: 'Avenir Next', Arial, Helvetica, sans-serif;
+  font-size: 15px;
   line-height: 1.4;
 }
 
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #95989A;
+  text-align: center;
+  margin: auto;
+  position: relative;
+}
+
+h5{
+  font-size: 12px;
+  font-weight: 400;
+  color: #95989A;
+  text-align: left;
+}
+
+body .username {
+  font-weight: 600;
+}
+
 a:link, a:visited {
-  color: #08A1BF;
+  color: #FFF;
+  outline: none;
 }
 
 a:hover, a:active, a:focus {
   /* TODO: confirm the hover color */
   color: #08A1BF;
+  outline: none;
 }
 
 input::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #CCC;
 }
 
 .two-x-bg-icons {
@@ -95,10 +125,12 @@ input::-webkit-input-placeholder {
 }
 
 .action-button-white {
-  background: #FFFFFF;
-  border: 1px solid #E5E5EA;
+  background: #4CBED3;
+  border: 1px solid #4CBED3;
   border-radius: 4px;
-  color: #CCCCCC;
+  color: #FFF;
+  padding: 10px 20px;
+  font-size: 13px;
 }
 
 .action-button-gray {
@@ -126,6 +158,18 @@ input::-webkit-input-placeholder {
   border: none;
   border-radius: 50%;
   color: #FFFFFF;
+  outline: 0;
+}
+
+.play-pause-button:hover {
+  display: inline-block;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  background: #81D1E0;
+  olor: #FFFFFF;
+  outline: 0;
 }
 /*~~ Buttons End ~~*/
 
@@ -141,8 +185,8 @@ input::-webkit-input-placeholder {
 .avatar-small-tiny {
   display: inline-block;
   overflow: hidden;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 
@@ -152,14 +196,16 @@ input::-webkit-input-placeholder {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border
 }
 
 .avatar-medium {
   display: inline-block;
   overflow: hidden;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  border: 2px solid #5B6C72;
 }
 
 .avatar-big {
@@ -171,7 +217,7 @@ input::-webkit-input-placeholder {
 }
 /*~~ Avatar Ends ~~*/
 
-/*~~ Global Search ~~*/
+/* Global Search */
 .global-search {
   padding: 0 10px 0 30px;
   width: 260px;
@@ -183,6 +229,7 @@ input::-webkit-input-placeholder {
   text-align: center;
   font-size: 14px;
   font-weight: lighter;
+  display: none;
 }
 
 .search-results {
@@ -262,12 +309,16 @@ input::-webkit-input-placeholder {
   color: #5B6C72;
 }
 
+
+
 /*
   We have to use JavaScript to make sure both keyboard arrows
   and mouse move work on the list item.
   Use .hover instead of :hover should make things easier.
   TODO: get the right hover style from designer.
 */
+
+/*
 .search-result.hover {
   background: #08A1BF;
 }
@@ -276,30 +327,99 @@ input::-webkit-input-placeholder {
 .search-result.hover .search-result-detail .subtitle {
   color: #FFFFFF;
 }
+*/
 /*~~ Global Search Ends ~~*/
 
 /*~~ Page Header ~~*/
 .page-header {
   width: 100%;
-  height: 55px;
-  background: #5B6C72;
+  height: 60px;
+  background: #08a1bf;
   text-align: center;
 }
 
 .page-header-content {
   overflow: hidden;
   margin: 0 auto;
-  width: 745px;
+  width: 1000px;
   height: 100%;
 }
 
 .page-header .logo {
   float: left;
-  margin-top: 7px;
-  width: 138px;
+  margin-top: 15px;
+  width: 118px;
   height: 40px;
-  text-indent: -9999em;
-  background: url(/images/icons.png) no-repeat;
+  text-indent: 9999em;
+  background: url(/images/icons.png);
+}
+
+.page-header .phone-number-input {
+  position: relative;
+  float: center;
+  margin: 10px 120px 0px 0px;
+}
+
+.phone-number {
+  width: 200px;
+  height: 38px;
+  background: none;
+  border: 1px solid #4CBED3;
+  border-radius: 3px;
+  color: #FFFFFF;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 0 0 10px;
+  outline: 0;
+}
+
+.send-app-button {
+  background: #4CBED3;
+  border: none;
+  border-radius: 4px;
+  color: #FFF;
+  padding: 10px 20px;
+  font-size: 13px;
+  margin: 0px 0 0px 10px;
+  outline: 0;
+}
+
+.hvr-back-pulse {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvr-back-pulse:hover, .hvr-back-pulse:focus, .hvr-back-pulse:active {
+  -webkit-animation-name: hvr-back-pulse;
+  animation-name: hvr-back-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #81D1E0;
+  background-color: #81D1E0;
+  color: #FFF;
+}
+.app-store-badge {
+  display: inline-block;
+  overflow: hidden;
+  width: 150px;
+  height: 46px;
 }
 
 .page-header .global-search-form {
@@ -317,6 +437,7 @@ input::-webkit-input-placeholder {
   border: none;
   background: none;
   font-size: 0;
+  display: none;
 }
 
 .page-header .global-search-button:after {
@@ -329,6 +450,7 @@ input::-webkit-input-placeholder {
   background: url(/images/icons.png) no-repeat -110px -25px;
   background-size: 150px 80px;
 }
+
 
 .page-header .header-avatar {
   float: right;
@@ -344,6 +466,7 @@ input::-webkit-input-placeholder {
 .page-header .login-button {
   margin-left: 9px;
 }
+
 /*~~ Page Header Ends ~~*/
 
 /*~~ Global Player ~~*/
@@ -354,17 +477,17 @@ input::-webkit-input-placeholder {
   right: 0;
   bottom: 0;
   height: 55px;
-  background: #492fb4; /* Old browsers */
-  background: -moz-linear-gradient(top, #492fb4 0%, #814ac4 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #492fb4 0%,#814ac4 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #492fb4 0%,#814ac4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  color: #FFFFFF;
+  background:#FFF;
+  color: #333;
   text-align: center;
+  -webkit-box-shadow: 0px 2px 5px 1px #999;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    0px 2px 5px 1px #999;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0px 2px 5px 1px #999;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
 .fixed-player .player-wrapper {
   margin: auto;
-  width: 910px;
+  width: 1200px;
   height: 100%;
 }
 
@@ -374,23 +497,26 @@ input::-webkit-input-placeholder {
 }
 
 .fixed-player .player-control {
-  width: 120px;
+  width: 165px;
+  margin-left: 100px;
 }
 
 .fixed-player .player-button {
   float: left;
-  margin-top: 19px;
+  margin-top: 17px;
   background: none;
   border: none;
   color: #FFFFFF;
   font-size: 0;
   text-align: center;
+  outline: 0;
+  margin-left: 10px;
 }
 
 .fixed-player .play-pause-button {
-  margin: 14px 8px 0;
-  width: 40px;
-  height: 27px;
+  margin: 8px 10px 0 15px;
+  width: 45px;
+  height: 40px;
 }
 
 .fixed-player .player-button.disabled {
@@ -401,68 +527,77 @@ input::-webkit-input-placeholder {
 .fixed-player .player-button:before {
   content: "";
   display: inline-block;
-  background: url(/images/icons.png) no-repeat;
-  background-size: 150px 80px;
+  background: url(/images/player-icons.png) no-repeat;
+  background-size: 81px 78px;
 }
 
 .fixed-player .prev-button:before {
-  width: 20px;
-  height: 16px;
-  background-position: -55px -25px;
+  width: 22px;
+  height: 22px;
+  background-position: 0px -61px;
 }
 
 .fixed-player .next-button:before {
-  width: 20px;
-  height: 16px;
-  background-position: -77px -25px;
+  width: 22px;
+  height: 22px;
+  background-position: -59px -61px;
 }
 
 .fixed-player .play-button:before {
-  width: 28px;
-  height: 27px;
-  background-position: 0 -25px;
+  width: 45px;
+  height: 45px;
+  background-position: 0 0px;
 }
 
 .fixed-player .pause-button:before {
-  width: 16px;
-  height: 27px;
-  background-position: -30px -25px;
+  width: 45px;
+  height: 45px;
+  background-position: -45px 0px;
 }
 
 .fixed-player .player-progress {
-  margin: 0 0 0 28px;
+  margin: 0 0 0 60px;
   padding: 19px;
-  width: 575px;
+  width: 600px;
   font-weight: lighter;
 }
 
 .fixed-player .elapsed-time {
   float: left;
-  margin-right: 10px;
+  margin: 3px 5px 0 0;
   width: 45px;
   text-align: left;
+  color: #333;
+  font-size: 11px;
+  font-weight: 400;
 }
 
 .fixed-player .remaining-time {
   float: right;
-  margin: 0 20px 0 10px;
+  margin: 3px 20px 0 25px;
   width: 45px;
   text-align: left;
+  color: #333;
+  font-size: 11px;
+  font-weight: 400;
 }
 
 .fixed-player .progress-bar-wrapper {
   overflow: hidden;
   margin-top: 9px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 5px;
+  background: #DFDFE6;
+  border-radius: 10px;
 }
 
 .fixed-player .progress-bar {
-  height: 2px;
-  background: #FFFFFF;
+  height: 5px;
+  background: #08A1BF;
 }
 
 .fixed-player .track-info {
+  margin-left: 0px;
+  margin-top: 5px;
   width: 187px;
   white-space: nowrap;
 }
@@ -470,7 +605,7 @@ input::-webkit-input-placeholder {
 .fixed-player .avatar-small-tiny {
   display: block;
   position: relative;
-  top: 10px;
+  top: 7px;
 }
 
 .fixed-player .player-tag {
@@ -488,24 +623,53 @@ input::-webkit-input-placeholder {
 .fixed-player .tag:visited,
 .fixed-player .tag:hover,
 .fixed-player .tag:active {
-  color: #FFFFFF;
-  font-weight: lighter;
+  color: #333;
+  font-weight: 400;
+  font-size: 12px;
+  outline: 0;
 }
 /*~~ Global Player Ends ~~*/
 
 /*~~ Pundit ~~*/
 .pundit-talk-header {
-  text-align: center;
-  height: 94px;
-  background-color: #08A1BF;
+  position: relative;
+  padding: 20px 20px 10px;
+  background: url(/images/talk-header-bg.png) center center no-repeat;
+  background-size: cover;
+  border: none;
+  border-radius: none;
+  text-align: center
 }
 
-.pundit-header-tag {
+.pundit-talk-header .pundit-talk-description {
+  color: #FFF;
+}
+
+.pundit-talk-header .pundit-point-count {
   display: inline-block;
-  color: white;
-  font-size: 19px;
+  color: #FFF;
+  font-size: 15px;
   font-weight: 600;
-  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.pundit-talk-header .pundit-talk-participant-list {
+  overflow: hidden;
+  position: relative;
+  left: -1px;
+  margin-left: 475px;
+  margin-top: 10px;
+  width: 590px;
+}
+
+.pundit-talk-header .pundit-talk-participant {
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.pundit-talk-header .pundit-talk-participant:nth-child(12n+1){
+    margin-left: 0;
 }
 
 .pundit-header-tag p {
@@ -557,30 +721,37 @@ input::-webkit-input-placeholder {
 .pundit-sub-reply {
   clear: both;
   padding-bottom: 0;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .pundit-sub-reply .pundit-wrapper {
-  margin: 0;
+  margin: 0 0 0 65px;
 }
 
 .pundit-wrapper {
   overflow: hidden;
-  margin: 10px 0;
-  padding: 20px 20px 15px 20px;
+  margin: 15px 0 0 65px;
+  padding: 10px;
   background: #FFFFFF;
-  border: 1px solid #E5E5EA;
-  border-radius: 4px;
+  border: none;
+  border-radius: 3px;
+  width: 520px;
 }
 
 .pundit-avatar {
   float: left;
-  margin: 0 15px 0 0;
+  margin: 0 5px 0 0;
 }
 
 .pundit-avatar img {
   width: 100%;
   height: 100%;
+}
+
+.pundit-avatar-reply {
+  float: left;
+  margin: 0 5px 0 0 0;
+  border-radius: 50px;
 }
 
 .pundit-details {
@@ -589,29 +760,31 @@ input::-webkit-input-placeholder {
 
 .pundit-details .play-pause-button:after {
   content: "";
-  left: 15px;
+  left: 16px;
   position: absolute;
   background: url(/images/icons.png) no-repeat;
   background-size: 150px 80px;
 }
 
 .pundit-details .pause-button:after {
-  top: 12px;
-  width: 13px;
-  height: 16px;
+  top: 13px;
+  left: 14px;
+  width: 12px;
+  height: 15px;
   background-position: -110px -41px;
 }
 
 .pundit-details .play-button:after {
-  top: 13px;
-  width: 13px;
-  height: 14px;
+  top: 11px;
+  width: 10px;
+  height: 17px;
   background-position: -90px -43px;
 }
 
 .pundit-details .pundit-tag {
-  margin-bottom: 5px;
   color: #333;
+  font-weight: 600;
+  margin: 10px 0 0 50px;
 }
 
 .pundit-details .pundit-tag a:link,
@@ -626,10 +799,11 @@ input::-webkit-input-placeholder {
 .pundit-details .comment-details a.username:focus {
   /* TODO: confirm the color on hover */
   color: #333;
+  outline: 0;
 }
 
 .pundit-details .pundit-subject {
-  margin: 5px 0;
+  margin: 0px auto;
 }
 
 .pundit-subject p {
@@ -653,19 +827,49 @@ input::-webkit-input-placeholder {
 
 .pundit-details .pundit-audio {
   overflow: hidden;
-  margin: 20px 0;
+  margin: 10px 0 0 0;
 }
 
 .pundit-details .pundit-audio .play-pause-button {
   position: relative;
   float: right;
   font-size: 0;
+  margin-top: 13px;
+  margin-left: 15px;
+}
+
+.wave-overlay {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  width: 440px;
+  height: 32.5px;
+  opacity: 0.4;
+  background-color:#FFF;
+  border-top: 1px solid #CCC;
+  padding-top: 0px auto;
+}
+
+hr {
+  border: 0.5px solid #CCC;
+  margin: 0 0 10px 70px;
+  width: 510px;
+  text-align: center;
 }
 
 .pundit-details .pundit-audio .audio-wave {
   float: left;
-  width: 400px;
-  height: 40px;
+  width: 440px;
+  height: 32.5px;
+  z-index: 1;
+}
+
+.audio-wave-reply {
+  float: left;
+  width: 440px;
+  height: 0;
+  z-index: 1;
+  padding: 0 0 32px;
 }
 
 .pundit-details .pundit-preview {
@@ -708,56 +912,95 @@ input::-webkit-input-placeholder {
 }
 
 .pundit-details .pundit-actions {
-  margin: 20px 0 10px;
+  margin: 5px 0 0px;
   line-height: 30px;
 }
 
-.pundit-details .pundit-actions .pundit-share-button,
+.pundit-details .reply-like-count {
+  width: 50px;
+  margin: -28px 0 0 30px;
+}
+
+.pundit-details .subreply-count {
+  width: 50px;
+  margin: -17px 0 0 30px;
+  outline: none;
+}
+
 .pundit-details .pundit-actions .pundit-like-button {
+  margin-left: -6px;
   margin-right: 10px;
-  width: 78px;
-  height: 30px;
+  width: 26px;
+  height: 27px;
   font-size: 12px;
+  float:left;
+  background-color: #FFF;
+  border: none;
+  outline: none;
 }
 
-.pundit-details .pundit-actions .pundit-share-button:hover,
+.pundit-details .pundit-actions .pundit-subreply-button {
+  margin: 2px 10px 0 60px;
+  width: 26px;
+  height: 27px;
+  font-size: 12px;
+  float:left;
+  background-color: #FFF;
+  border: none;
+  oultine: none;
+}
+
+.pundit-details .pundit-actions .pundit-subreply-button:hover,
 .pundit-details .pundit-actions .pundit-like-button:hover {
-  background: #6007B5;
-  border-color: #6007B5;
-  color: #FFFFFF;
+  background: #FFF;
+  border-color: #FFF;
+  color: #FFF;
+  outline: none;
 }
 
-.pundit-details .pundit-actions .pundit-share-button:before,
+.pundit-details .pundit-actions .pundit-subreply-button:hover,
+.pundit-details .pundit-actions .pundit-like-button:hover {
+  background: #FFF;
+  border-color: #FFF;
+  color: #FFF;
+  outline: none;
+}
+
+.pundit-details .pundit-actions .pundit-subreply-button:before,
 .pundit-details .pundit-actions .pundit-like-button:before {
   content: "";
   display: inline-block;
   position: relative;
   top: 1px;
   background: url(/images/icons.png) no-repeat;
+  outline: none;
 }
 
-.pundit-details .pundit-actions .pundit-share-button:before {
+.pundit-details .pundit-actions .pundit-subreply-button:before {
   margin-right: 10px;
-  width: 10px;
-  height: 10px;
-  background-position: -77px 0px;
+  width: 16px;
+  height: 16px;
+  background-position: -107px -63px;
+  background-size: 150px 80px;
+  outline: none;
+}
+
+.pundit-details .pundit-actions .pundit-subreply-button:hover:before {
+  background-position: -88px -63px;
+  outline: none;
+}
+
+
+.pundit-details .pundit-actions .pundit-like-button:before {
+  margin: 2px 0 0 0;
+  width: 25px;
+  height: 28px;
+  background-position: -57px -59px;
   background-size: 150px 80px;
 }
 
-.pundit-details .pundit-actions .pundit-share-button:hover:before {
-  background-position: -87px 0px;
-}
-
-.pundit-details .pundit-actions .pundit-like-button:before {
-  margin-right: 7px;
-  width: 12px;
-  height: 10px;
-  background-position: -29px -31px;
-  background-size: 80px 43px;
-}
-
 .pundit-details .pundit-actions .pundit-like-button:hover:before {
-  background-position: 0px -31px;
+  background-position: -29px -59px;
 }
 
 .pundit-details .pundit-actions .pundit-mark-button {
@@ -771,6 +1014,40 @@ input::-webkit-input-placeholder {
 .pundit-details .pundit-note-description {
   float: right;
   color: #CCCCCC;
+}
+
+.reply-input {
+  position: relative;
+  float: center;
+  margin: 10px 0 20px 65px;
+}
+
+.reply-input-box {
+  width: 520px;
+  height: 60px;
+  background: #FFF;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  color: #333
+  ;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 0 0 0 20px;
+  outline: 0;
+}
+
+.send-reply-button {
+  background: #08A1BF;
+  border: none;
+  border-radius: 3px;
+  float: right;
+  color: #FFF;
+  padding: 10px 20px;
+  margin: -47px 55px 0 0;
+  display: inline;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 /*~~ Pundit Ends ~~*/
@@ -1075,7 +1352,7 @@ input::-webkit-input-placeholder {
 .edit-pundit-form .audio-wave {
   margin-top: 50px;
   width: 100%;
-  height: 40px;
+  height: 70px;
   background: #F7F7F7;
 }
 
@@ -1234,6 +1511,7 @@ input::-webkit-input-placeholder {
 .login-form .login-password:focus {
   outline: none;
   border-bottom-color: #08A1BF;
+  outline: 0;
 }
 
 .login-form .login-button {
