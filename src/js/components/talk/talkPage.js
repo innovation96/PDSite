@@ -150,7 +150,7 @@ const TalkPage = React.createClass({
             </div>
           </div>
           <form action="#" className="reply-input">
-            <input type="text" className="reply-input-box" placeholder='{talk.user.username}' />
+            <input type="text" className="reply-input-box" placeholder={'Reply to ' + talk.user.username} />
             <button className="hvr-back-pulse post-reply send-reply-button">Send</button>
           </form>
           <h4 classname="reply-count">{talk.replies.length} Replies</h4>
