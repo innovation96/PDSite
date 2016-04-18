@@ -102,7 +102,7 @@ const TalkPage = React.createClass({
 
     return (
 
-    <div>
+    <div className="talk-page">
       <div>
           {/*<div className="pundit-header-tag">
             <Link to={'/users/' + talk.user._id} className="username">{talk.user.name}</Link> {channelJsx}
@@ -153,7 +153,7 @@ const TalkPage = React.createClass({
             <input type="text" className="reply-input-box" placeholder={'Reply to ' + talk.user.username} />
             <button className="hvr-back-pulse post-reply send-reply-button">Send</button>
           </form>
-          <h4 classname="reply-count">{talk.replies.length} Replies</h4>
+          <h4 className="reply-count">{talk.replies.length} Replies</h4>
         </div>
       </div>
       {replyList}

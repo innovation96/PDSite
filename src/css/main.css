@@ -631,6 +631,10 @@ input::-webkit-input-placeholder {
 /*~~ Global Player Ends ~~*/
 
 /*~~ Pundit ~~*/
+.talk-page {
+  padding-bottom: 70px;
+}
+
 .pundit-talk-header {
   position: relative;
   padding: 20px 20px 10px;
