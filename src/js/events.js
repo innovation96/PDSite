@@ -5,7 +5,10 @@ const Event = {
   PLAYER_AUDIO_TRACK_CHANGE: 'playerAudioTrackChange',
   PLAYER_AUDIO_PROGRESS_CHANGE: 'playerAudioProgressChange',
   PLAYER_AUDIO_PLAYING_STATE_CHANGE: 'playerAudioPlayingStateChange',
-  PAGE_AUDIO_TRACK_CHANGE: 'pageAudioTrackChange'
+  PAGE_AUDIO_TRACK_CHANGE: 'pageAudioTrackChange',
+
+  OPEN_MODAL: 'openModal',
+  CLOSE_MODAL: 'closeModal'
 };
 
 export default Event;

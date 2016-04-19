@@ -65,8 +65,8 @@ const Reply = React.createClass({
           <div className="pundit-subject">
             <p>{reply.text}</p>
             <div className="pundit-actions">
-              <button className="pundit-like-button"><h5 className="reply-like-count">{reply.likers.length} Likes</h5></button>
-              <button className="pundit-subreply-button"><h5 className="subreply-count">Replies</h5></button>
+              <button className="pundit-like-button" onClick={this.props.onLike}><h5 className="reply-like-count">{reply.likers.length} Likes</h5></button>
+              <button className="pundit-subreply-button" onClick={this.props.onSubreply}><h5 className="subreply-count">Replies</h5></button>
             </div>
             {/*<img src="images/link_small_icon.png" width="15" height="15" />
             <a href={reply.url} className="pundit-link">{reply.url}</a>*/}

@@ -145,7 +145,7 @@ const TalkPage = React.createClass({
                 <a href={talk.url} className="pundit-link">{talk.url}</a>
                 Pundit links are to be incorporated with the title text. */}
                 <div className="pundit-actions">
-                  <button className="pundit-like-button"></button><h5 className="like-count">{talk.likers.length} Likes</h5>
+                  <button className="pundit-like-button" onClick={this.onLike}></button><h5 className="like-count" onClick={this.onLike}>{talk.likers.length} Likes</h5>
                 </div>
               </div>
             </div>
@@ -239,6 +239,10 @@ const TalkPage = React.createClass({
 
   onAudioReady(e) {
     e.wavesurfer.setVolume(0);
+  },
+
+  onLike(e) {
+    dispatcher.emit(Event.OPEN_MODAL);
   }
 });
 

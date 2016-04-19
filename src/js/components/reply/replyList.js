@@ -71,7 +71,7 @@ const ReplyList = React.createClass({
 
     return (
     <div>
-      {replies.map(reply => (<Reply key={reply._id} reply={reply} playPauseAudio={this.playPauseAudio} />))}
+      {replies.map(reply => (<Reply key={reply._id} reply={reply} playPauseAudio={this.playPauseAudio} onLike={this.onLike} onSubreply={this.onSubreply} />))}
     </div>
     );
   },
@@ -173,6 +173,18 @@ const ReplyList = React.createClass({
 
   syncAudioProgress(data) {
 
+  },
+
+  onLike(e) {
+    this.showDownloadModal();
+  },
+
+  onSubreply(e) {
+    this.showDownloadModal();
+  },
+
+  showDownloadModal() {
+    dispatcher.emit(Event.OPEN_MODAL);
   }
 });
 
