@@ -168,7 +168,7 @@ input::-webkit-input-placeholder {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   background: #81D1E0;
-  olor: #FFFFFF;
+  color: #FFFFFF;
   outline: 0;
 }
 /*~~ Buttons End ~~*/
@@ -196,7 +196,6 @@ input::-webkit-input-placeholder {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border
 }
 
 .avatar-medium {
@@ -979,7 +978,7 @@ hr {
   float:left;
   background-color: #FFF;
   border: none;
-  oultine: none;
+  outline: none;
 }
 
 .pundit-details .pundit-actions .pundit-subreply-button:hover,
