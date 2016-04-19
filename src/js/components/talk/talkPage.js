@@ -113,6 +113,7 @@ const TalkPage = React.createClass({
           </div> */}
 
         <div className="pundit-talk-header">
+          <div className="pundit-talk-banner" style={{backgroundImage: 'url(' + talk.user.profilePicture + ')'}}></div>
           <h3 className="title"><span className="pundit-talk-description">Talk with <strong>{talk.user.username}</strong> about <strong>{channelJsx}</strong></span></h3>
           <p className="pundit-point-count">15 Points</p>
           <ul className="pundit-talk-participant-list">
