@@ -637,7 +637,7 @@ input::-webkit-input-placeholder {
 .pundit-talk-header {
   overflow: hidden;
   position: relative;
-  padding: 20px 20px 10px;
+  padding: 50px 20px 50px;
   border: none;
   border-radius: 0;
   text-align: center;
@@ -658,8 +658,8 @@ input::-webkit-input-placeholder {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  -webkit-filter: blur(8px);
-  filter: blur(8px);
+  -webkit-filter: blur(20px);
+  filter: blur(20px);
 }
 
 .pundit-talk-banner:after {
