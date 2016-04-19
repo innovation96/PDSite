@@ -1072,12 +1072,12 @@ hr {
   background: #08A1BF;
   border: none;
   border-radius: 3px;
-  float: right;
+  position: relative;
   color: #FFF;
-  padding: 10px 20px;
-  margin: -47px 55px 0 0;
+  padding: 10px 145px;
+  margin: 20px 0 20px 135px;
   display: inline;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 12px;
 }
 
