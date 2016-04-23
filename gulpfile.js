@@ -20,12 +20,18 @@ var config = {
     html: './src/*.html',
     js: './src/js/**/*.js',
     libs: [
-      './node_modules/jquery/dist/jquery.js'
+      './node_modules/jquery/dist/jquery.js',
+      './node_modules/superagent/superagent.js',
+      './src/js/standalone/wavesurfer.min.js',
+      './src/js/standalone/twitter_embed.js'
     ],
     css: [
       './src/css/reset.css',
       './src/css/vcenter.css',
-      './src/css/main.css'
+      './src/css/main.css',
+    ],
+    cssLibs: [
+      './src/css/twitter_embed.css'
     ],
     images: './src/images/*',
     dist: './dist',
@@ -60,6 +66,13 @@ gulp.task('css', function() {
   gulp.src(config.paths.css)
     .pipe(concat('bundle.css'))
     .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(config.paths.dist + '/css'))
+    .pipe(connect.reload());
+
+  gulp.src(config.paths.cssLibs)
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(minifyCss())
     .pipe(sourcemaps.write('./'))
@@ -101,7 +114,7 @@ gulp.task('lint', function() {
 
 gulp.task('watch', function() {
   gulp.watch(config.paths.html, ['html']);
-  gulp.watch(config.paths.css, ['css']);
+  gulp.watch(config.paths.css.concat(config.paths.cssLibs), ['css']);
   gulp.watch(config.paths.js, ['js', 'lint']);
 });
 
